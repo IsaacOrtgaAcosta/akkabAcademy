@@ -4,39 +4,41 @@ services:
   backend:
     build: 
       context: ./backend
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
     working_dir: /app
     volumes:
       - ./backend:/app
     env_file:
       - ./backend/.env
-    command: sh -c "npm install && npm run dev"
+    command: sh -c "npm install && npx nodemon --legacy-watch src/index.js"
     ports:
       - "4000:4000"
     environment:
       - NODE_ENV=development
+    depends_on:
+      - db
   frontend:
     image: node:20-alpine
     working_dir: /app 
     volumes:
-      - ./frontend:/app 
+      - ./frontend:/app
     command: sh -c "npm install && npm run dev -- --host 0.0.0.0 --port 3000"
     ports: 
       - "3000:3000"
     environment: 
       - NODE_ENV=development
-    depends_on:
-      - backend
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
   db:
     image: mysql:8.0
     container_name: akkab_db
     ports:
-      - "3306:3306"
+      - "3307:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=rootpassword
       - MYSQL_DATABASE=akkab_db
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=root
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=secret
     command: --default-authentication-plugin=mysql_native_password
     volumes:
       - db-data:/var/lib/mysql

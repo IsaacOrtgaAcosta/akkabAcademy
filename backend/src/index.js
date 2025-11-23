@@ -6,10 +6,10 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 app.get('/api/hello', (req, res,) => {
-    res.json({ message: 'Hola desde el backend en Docker modificado'})
+    res.json({ message: 'Hola desde el backend en Docker'})
 });
 
-app.get("/api/db-check", async (req, rers) => {
+app.get("/api/db-check", async (req, res) => {
     try {
         const [rows] = await pool.query("SELECT NOW() AS now");
         res.json({ok: true, time: rows[0].now});
@@ -20,5 +20,5 @@ app.get("/api/db-check", async (req, rers) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Servidor escuhando en el puerto ${PORT}`);
+    console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
