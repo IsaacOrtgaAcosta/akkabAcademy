@@ -1,24 +1,27 @@
 require("dotenv").config();
 const express = require("express");
 const pool = require("./db");
+const userRoutes = require("./routes/user.routes");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-app.get('/api/hello', (req, res,) => {
-    res.json({ message: 'Hola desde el backend en Docker'})
-});
+// Parse the JSON request body:
+app.use(express.json());
 
-app.get("/api/db-check", async (req, res) => {
-    try {
-        const [rows] = await pool.query("SELECT NOW() AS now");
-        res.json({ok: true, time: rows[0].now});
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ ok: false, error: "Error connecting to DB"});
-    }
+// Routes:
+app.get("/api/users", userRoutes);
+
+// Middelware for errors:
+app.use((err, req, res, next) => {
+    console.error(err);
+    const status = err.statusCode || 500;
+    res.status(status).json({
+        ok: false,
+        message: err.message || "Internal server error",
+    });
 });
 
 app.listen(PORT, () => {
-    console.log(`Servidor escuchando en el puerto ${PORT}`);
+    console.log(`Server listening in ${PORT} port`);
 });

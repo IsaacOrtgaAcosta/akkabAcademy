@@ -10,7 +10,7 @@ services:
       - ./backend:/app
     env_file:
       - ./backend/.env
-    command: sh -c "npm install && npx nodemon --legacy-watch src/index.js"
+    command: sh -c "npm install && node runMigrations.js && npx nodemon --legacy-watch src/index.js"
     ports:
       - "4000:4000"
     environment:
