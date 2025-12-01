@@ -1,0 +1,20 @@
+:root {
+
+    /* Brand / base colors */
+    --color-primary: #10B981;
+    --color-secondary: #3B82F6;
+    --color-accent: #F97316;
+    --color-neutral-light: #F3F4F6;
+    --color-neutral-dark: #1F2937;
+    --color-danger: #EF4444;
+
+    /* Semantic roles */
+    --color-btn-primary-bg: var(--color-primary);
+    --color-btn-primary-text: #ffffff;
+
+    --color-btn-secondary-bg: var(--color-secondary);
+    --color-btn-secondary-text: var(--color-brand-secondary);
+
+    --color-btn-danger-bg: var(--color-danger);
+    --color-btn-danger-text: #ffffff;
+}

@@ -1,0 +1,27 @@
+.base{
+    padding: .5rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    border: none;
+}
+
+.base:hover{
+    cursor: pointer;
+    opacity: .9;
+    scale: calc(1.05);
+}
+
+.success{
+    background-color: var(--color-btn-primary-bg);
+    color: var(--color-btn-primary-text);
+}
+
+.primary{
+    background-color: var(--color-btn-secondary-bg);
+    color: var(--color-btn-secondary-text);
+}
+
+.danger{
+    background-color: var(--color-btn-danger-bg);
+    color: var(--color-btn-danger-text);
+}
