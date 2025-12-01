@@ -1,0 +1,9 @@
+.base{
+    height: 100%;
+    width: 100%;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 1px 10px 1px var(--color-neutral-dark-opacity);
+}

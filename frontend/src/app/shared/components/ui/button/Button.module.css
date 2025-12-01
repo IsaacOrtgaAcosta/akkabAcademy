@@ -8,7 +8,8 @@
 .base:hover{
     cursor: pointer;
     opacity: .9;
-    scale: calc(1.05);
+    transform: scale(1.05);
+    transition: .3s ease-in-out;
 }
 
 .success{
@@ -24,4 +25,41 @@
 .danger{
     background-color: var(--color-btn-danger-bg);
     color: var(--color-btn-danger-text);
+}
+
+/* SIZES: */
+
+.xxs{
+    width: 46px;
+    font-size: 16px;
+}
+
+.xs{
+    width: 80px;
+    font-size: 14px;
+}
+
+.sm{
+    width: 150px;
+    font-size: 16px;
+}
+
+.md{
+ width: 250px;
+ font-size: 18px;
+}
+
+.l{
+    width: 300px;
+    font-size: 18px;
+}
+
+.xl{
+    width: 350px;
+    font-size: 18px;
+}
+
+.xxl{
+    width: 400px;
+    font-size: 18px;
 }

@@ -6,6 +6,7 @@
     --color-accent: #F97316;
     --color-neutral-light: #F3F4F6;
     --color-neutral-dark: #1F2937;
+    --color-neutral-dark-opacity: rgba(31, 41, 55, .6);
     --color-danger: #EF4444;
 
     /* Semantic roles */
