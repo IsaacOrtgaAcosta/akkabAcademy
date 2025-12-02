@@ -4,7 +4,7 @@ import LoginIllustration from "@/assets/illustrations/login.svg";
 import styles from './LoginPage.module.css';
 
 
-export const App = () => {
+export const LoginPage = () => {
   return (
     <>
       <div className={styles.container}>

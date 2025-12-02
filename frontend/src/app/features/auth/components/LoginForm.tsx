@@ -11,8 +11,7 @@ export const LoginForm = () => {
             variant={"success"}
             size={"md"}
             type={"submit"}
-            children="Entrar"
-          />
+          >Entrar</Button>
         </Card>
     </>
   );
