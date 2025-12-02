@@ -12,6 +12,7 @@
     transition: .3s ease-in-out;
 }
 
+/* Colors */
 .success{
     background-color: var(--color-btn-primary-bg);
     color: var(--color-btn-primary-text);
@@ -27,7 +28,7 @@
     color: var(--color-btn-danger-text);
 }
 
-/* SIZES: */
+/* Sizes: */
 
 .xxs{
     width: 46px;

@@ -5,5 +5,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 1px 1px 10px 1px var(--color-neutral-dark-opacity);
+}
+
+.column{
+    flex-direction: column;
+}
+
+.row{
+    flex-direction: row;
 }

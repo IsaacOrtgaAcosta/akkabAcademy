@@ -1,20 +1,25 @@
+import MuiCard, { type CardProps as MuiCardProps } from '@mui/material/Card';
+
 import styles from "./Card.module.css";
 
+type DirectionVariant = "column" | "row";
 
-
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+// Pendiente de llenar de props propias si procede, si no, quitarlo
+interface OutlineCardProps extends MuiCardProps {
+direction?: DirectionVariant;
 }
 
-export const Card: React.FC<CardProps> = ({
+export const Card: React.FC<OutlineCardProps> = ({
+direction="column",
 className,
 children
 }) => {
-
+    const variantDirection = styles[direction];
     return (
-        <div
-        className={`${styles.base} ${className ?? ""}`}
+        <MuiCard
+        className={`${styles.base} ${variantDirection} ${className ?? ""}`}
         >
             {children}
-        </div>
+        </MuiCard>
     )
 }
