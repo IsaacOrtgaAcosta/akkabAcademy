@@ -1,0 +1,18 @@
+<svg width="200" height="260" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- ICONO ORBIT -->
+  <g transform="translate(20, 10)">
+    <circle cx="80" cy="80" r="28" stroke="#10B981" stroke-width="8" fill="none"/>
+    <circle cx="80" cy="80" r="40" stroke="#3B82F6" stroke-width="5" fill="none" stroke-dasharray="20 14" stroke-linecap="round"/>
+    <circle cx="80" cy="80" r="52" stroke="#F97316" stroke-width="4" fill="none" stroke-dasharray="18 16" stroke-linecap="round"/>
+    <circle cx="80" cy="80" r="8" fill="#1F2937"/>
+  </g>
+
+  <text x="100" y="210" text-anchor="middle"
+        font-family="Manrope, system-ui"
+        font-size="42"
+        font-weight="600"
+        fill="#1F2937">
+    Akkab
+  </text>
+</svg>

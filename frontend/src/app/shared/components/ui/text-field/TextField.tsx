@@ -5,7 +5,11 @@ export type OutlineTextFieldProps = MuiTextFieldProps & {
     myProps?: string;
 };
 
-export const TextFieldComponent: React.FC<OutlineTextFieldProps> = (props) => {
+export const TextFieldComponent: React.FC<OutlineTextFieldProps> = (
+  {
+    label,
+  }
+) => {
   return (
     <Box
       component="form"
@@ -13,7 +17,7 @@ export const TextFieldComponent: React.FC<OutlineTextFieldProps> = (props) => {
       noValidate
       autoComplete="off"
     >
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" {...props}/>
+      <TextField id="outlined-basic" label={label} variant="outlined"/>
     </Box>
   );
 };
