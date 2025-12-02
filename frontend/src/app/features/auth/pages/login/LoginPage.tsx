@@ -9,6 +9,7 @@ export const App = () => {
     <>
       <div className={styles.container}>
         <Card>
+          
           <img src={LoginIllustration} alt="" />
         </Card>
         <LoginForm />
