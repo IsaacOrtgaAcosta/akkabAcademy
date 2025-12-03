@@ -10,3 +10,15 @@
 .button{
     margin-top: 30px;
 }
+
+.inputWrapper{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonVisibleIcon{
+    position: absolute;
+    right: 15px;
+}
