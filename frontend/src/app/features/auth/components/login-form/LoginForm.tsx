@@ -9,8 +9,6 @@ export const LoginForm = () => {
 
   const {type, visible, toggle} = usePasswordToggle();
 
- 
-
   return (
     <div className={styles.form}>
       <img src={Logo} alt="logo" className={styles.logo} />

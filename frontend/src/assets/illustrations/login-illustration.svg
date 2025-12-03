@@ -1,0 +1,229 @@
+<svg
+  viewBox="0 0 800 600"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-labelledby="title desc"
+>
+  <title id="title">Ilustración de bienvenida Akkab</title>
+  <desc id="desc">Ilustración sin fondo para pantalla de login Akkab.</desc>
+
+  <!-- ICONOS, PERSONA, TARJETAS Y DETALLES (SIN FONDO) -->
+
+  <!-- BURBUJA PRINCIPAL ORGÁNICA (OPCIONAL — la he dejado porque es parte de la composición,
+       pero si quieres también la puedo eliminar por completo y dejar solo la persona + tarjetas ) -->
+  <path
+    d="
+      M140,160
+      C190,70 330,40 450,80
+      C580,120 670,210 660,330
+      C650,460 540,540 410,530
+      C280,520 150,470 130,360
+      C115,290 105,230 140,160
+    "
+    fill="url(#bubbleGradient)"
+    opacity="0.18"
+  />
+
+  <!-- GRADIENTES USADOS POR ALGUNOS ELEMENTOS -->
+  <defs>
+    <linearGradient id="bubbleGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#3B82F6" />
+    </linearGradient>
+
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <!-- CÍRCULOS DECORATIVOS -->
+  <circle cx="660" cy="130" r="22" fill="#3B82F6" opacity="0.14" />
+  <circle cx="180" cy="120" r="16" fill="#10B981" opacity="0.2" />
+  <circle cx="680" cy="420" r="18" fill="#F97316" opacity="0.22" />
+  <circle cx="250" cy="500" r="14" fill="#FFFFFF" opacity="0.7" />
+
+  <!-- PERSONA -->
+  <g transform="translate(260, 240)">
+    <ellipse cx="150" cy="190" rx="140" ry="26" fill="#000" opacity="0.06" />
+
+    <rect
+      x="40"
+      y="130"
+      width="220"
+      height="60"
+      rx="16"
+      fill="#F9FAFB"
+      stroke="#E5E7EB"
+    />
+
+    <!-- Portátil -->
+    <g filter="url(#softShadow)">
+      <rect
+        x="90"
+        y="90"
+        width="140"
+        height="80"
+        rx="14"
+        fill="#FFFFFF"
+        stroke="#E5E7EB"
+      />
+      <rect x="95" y="95" width="130" height="40" rx="10" fill="#F3F4F6" />
+
+      <!-- Sidebar -->
+      <rect x="100" y="100" width="18" height="30" rx="5" fill="#10B981" opacity="0.9" />
+      <rect x="101" y="104" width="12" height="2.5" rx="1.2" fill="#ECFDF5" />
+      <rect x="101" y="110" width="12" height="2.5" rx="1.2" fill="#D1FAE5" />
+      <rect x="101" y="116" width="12" height="2.5" rx="1.2" fill="#A7F3D0" />
+
+      <!-- Gráfico -->
+      <polyline
+        points="125,120 145,115 165,122 185,110 205,118"
+        fill="none"
+        stroke="#3B82F6"
+        stroke-width="2.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <circle cx="145" cy="115" r="2.6" fill="#3B82F6" />
+      <circle cx="185" cy="110" r="2.6" fill="#10B981" />
+
+      <rect x="130" y="132" width="40" height="8" rx="4" fill="#E5E7EB" />
+      <rect x="175" y="132" width="40" height="8" rx="4" fill="#E5E7EB" />
+    </g>
+
+    <!-- Persona -->
+    <rect x="138" y="150" width="16" height="44" rx="7" fill="#1F2937" />
+    <rect x="160" y="150" width="16" height="44" rx="7" fill="#111827" />
+    <ellipse cx="146" cy="196" rx="11" ry="4" fill="#111827" />
+    <ellipse cx="168" cy="196" rx="11" ry="4" fill="#1F2937" />
+
+    <path
+      d="M135,118 C135,104 147,94 162,94 C177,94 189,104 189,118 L189,148 L135,148 Z"
+      fill="#10B981"
+    />
+
+    <path
+      d="M135,120 C124,124 117,134 118,144 C119,154 125,160 132,162 L140,157 C136,148 136,137 139,129 Z"
+      fill="#10B981"
+    />
+    <path
+      d="M189,120 C200,124 207,134 206,144 C205,154 199,160 192,162 L184,157 C188,148 188,137 185,129 Z"
+      fill="#10B981"
+    />
+
+    <circle cx="162" cy="78" r="22" fill="#F9FAFB" />
+    <path
+      d="M146,74 C148,65 155,59 162,59 C170,59 177,64 179,74 Z"
+      fill="#1F2937"
+    />
+
+    <circle cx="155" cy="78" r="2" fill="#4B5563" />
+    <circle cx="169" cy="78" r="2" fill="#4B5563" />
+    <path d="M155,86 C159,90 165,90 169,86" stroke="#6B7280" stroke-width="1.2" fill="none" />
+
+    <ellipse cx="190" cy="140" rx="7" ry="5" fill="#F9FAFB" />
+  </g>
+
+  <!-- TARJETA: CALENDARIO -->
+  <g transform="translate(150, 150)" filter="url(#softShadow)">
+    <rect width="190" height="110" rx="18" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <rect width="190" height="32" rx="18" fill="#3B82F6" />
+
+    <circle cx="18" cy="16" r="4" fill="#BFDBFE" />
+    <rect x="30" y="11" width="60" height="10" rx="5" fill="#EFF6FF" />
+
+    <g transform="translate(18, 46)">
+      <rect x="0" y="0" width="18" height="16" rx="4" fill="#F3F4F6" />
+      <rect x="24" y="0" width="18" height="16" rx="4" fill="#F3F4F6" />
+      <rect x="48" y="0" width="18" height="16" rx="4" fill="#3B82F6" opacity="0.3" />
+      <rect x="72" y="0" width="18" height="16" rx="4" fill="#F3F4F6" />
+      <rect x="96" y="0" width="18" height="16" rx="4" fill="#F3F4F6" />
+
+      <rect x="0" y="22" width="18" height="16" rx="4" fill="#F3F4F6" />
+      <rect x="24" y="22" width="18" height="16" rx="4" fill="#F3F4F6" />
+      <rect x="48" y="22" width="18" height="16" rx="4" fill="#10B981" opacity="0.45" />
+      <rect x="72" y="22" width="18" height="16" rx="4" fill="#F3F4F6" />
+      <rect x="96" y="22" width="18" height="16" rx="4" fill="#F3F4F6" />
+    </g>
+
+    <rect x="125" y="72" width="50" height="18" rx="9" fill="#ECFDF5" />
+    <circle cx="135" cy="81" r="4" fill="#10B981" />
+    <rect x="142" y="77" width="26" height="8" rx="4" fill="#A7F3D0" />
+  </g>
+
+  <!-- TARJETA: ALUMNOS -->
+  <g transform="translate(470, 120)" filter="url(#softShadow)">
+    <rect width="150" height="90" rx="16" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <circle cx="38" cy="40" r="16" fill="#DBEAFE" />
+    <circle cx="38" cy="36" r="8" fill="#1F2937" />
+    <path d="M28,48 C28,44 32,42 38,42 C44,42 48,44 48,48" fill="#1F2937" />
+
+    <rect x="70" y="24" width="60" height="16" rx="8" fill="#F3F4F6" />
+    <circle cx="80" cy="32" r="4" fill="#10B981" />
+    <rect x="88" y="28" width="32" height="8" rx="4" fill="#D1D5DB" />
+
+    <rect x="70" y="46" width="60" height="16" rx="8" fill="#F3F4F6" />
+    <circle cx="80" cy="54" r="4" fill="#3B82F6" />
+    <rect x="88" y="50" width="32" height="8" rx="4" fill="#D1D5DB" />
+
+    <rect x="14" y="66" width="60" height="14" rx="7" fill="#ECFDF5" />
+    <rect x="18" y="69" width="20" height="8" rx="4" fill="#6EE7B7" />
+    <rect x="42" y="69" width="18" height="8" rx="4" fill="#D1FAE5" />
+  </g>
+
+  <!-- TARJETA: PAGOS -->
+  <g transform="translate(170, 360)" filter="url(#softShadow)">
+    <rect
+      width="210"
+      height="110"
+      rx="20"
+      fill="#0F172A"
+      opacity="0.96"
+    />
+
+    <rect x="14" y="18" width="120" height="70" rx="14" fill="#111827" stroke="#1F2937"/>
+    <circle cx="30" cy="36" r="5" fill="#F97316" />
+    <circle cx="44" cy="36" r="5" fill="#3B82F6" />
+    <rect x="26" y="52" width="60" height="6" rx="3" fill="#4B5563" />
+    <rect x="26" y="62" width="40" height="4" rx="2" fill="#6B7280" />
+
+    <rect x="146" y="26" width="50" height="12" rx="6" fill="#10B981" />
+    <rect x="146" y="46" width="40" height="8" rx="4" fill="#374151" />
+    <rect x="146" y="60" width="40" height="8" rx="4" fill="#4B5563" />
+
+    <rect x="124" y="80" width="70" height="16" rx="8" fill="#ECFDF5" />
+    <circle cx="134" cy="88" r="4" fill="#10B981" />
+    <polyline
+      points="132,88 133.8,90 137,86"
+      fill="none"
+      stroke="#ECFDF5"
+      stroke-width="1.4"
+      stroke-linecap="round"
+    />
+    <rect x="140" y="84" width="36" height="8" rx="4" fill="#A7F3D0" />
+  </g>
+
+  <!-- TARJETA: MÉTRICAS -->
+  <g transform="translate(470, 340)" filter="url(#softShadow)">
+    <rect width="190" height="110" rx="18" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <rect x="20" y="22" width="80" height="10" rx="5" fill="#E5E7EB" />
+    <rect x="20" y="36" width="48" height="6" rx="3" fill="#D1D5DB" />
+
+    <g transform="translate(20, 52)">
+      <rect x="0" y="24" width="16" height="26" rx="4" fill="#DBEAFE" />
+      <rect x="26" y="14" width="16" height="36" rx="4" fill="#3B82F6" />
+      <rect x="52" y="8" width="16" height="42" rx="4" fill="#10B981" />
+      <rect x="78" y="18" width="16" height="32" rx="4" fill="#F97316" />
+    </g>
+
+    <rect x="120" y="62" width="50" height="20" rx="10" fill="#ECFDF5" />
+    <path
+      d="M130,74 L136,68 L142,74"
+      fill="none"
+      stroke="#10B981"
+      stroke-width="1.6"
+      stroke-linecap="round"
+    />
+    <rect x="138" y="68" width="22" height="8" rx="4" fill="#A7F3D0" />
+  </g>
+</svg>

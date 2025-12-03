@@ -1,6 +1,6 @@
 import { LoginForm } from "../../components/login-form/LoginForm";
 import { Card } from "@/app/shared/components/ui/card/Card";
-import LoginIllustration from "@/assets/illustrations/login.svg";
+import LoginIllustration from "@/assets/illustrations/login-illustration.svg";
 import styles from "./LoginPage.module.css";
 
 export const LoginPage = () => {
