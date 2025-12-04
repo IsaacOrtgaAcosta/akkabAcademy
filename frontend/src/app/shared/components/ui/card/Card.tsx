@@ -4,7 +4,6 @@ import styles from "./Card.module.css";
 
 type DirectionVariant = "column" | "row";
 
-// Pendiente de llenar de props propias si procede, si no, quitarlo
 interface OutlineCardProps extends MuiCardProps {
 direction?: DirectionVariant;
 }

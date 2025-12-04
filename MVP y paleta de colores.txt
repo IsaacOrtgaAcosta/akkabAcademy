@@ -1,0 +1,36 @@
+MVP:
+
+- Reservas de clases
+- Usuario: dar de alta, editar. Luego habrá que añadir roles y, según su rol, podrá hacer ciertas cosas o no.
+- Gestión alumnado: foto, datos generales, editar, dar de alta, dar de baja, modificar tarifa.
+- Gestión profesores: foto, datos generales, editar, dar de alta, dar de baja.
+- Gestión y visualización de matrículas y pagos. Puedo empezar haciéndolo manual, poniendo un check del mes pagado, y luego añadir pago automático con redsys o stripe.
+
+
+🎨 Paleta 3 – Naturaleza elegante
+
+Primario: #10B981 (Verde esmeralda)
+
+Secundario: #3B82F6 (Azul fresco)
+
+Acento: #F97316 (Naranja vivo)
+
+Neutros: #F3F4F6 (Gris claro), #1F2937 (Gris carbón)
+
+👉 Ideal para: webs de bienestar, salud, sostenibilidad o fitness.
+
+
+Segunda sugerencia:
+3. Dirección visual
+
+Estilo: Minimalista, escalable (funciona en app, web y favicon), tipográfico con un pequeño símbolo.
+
+Colores sugeridos:
+
+Azul moderno (#2D9CDB): Confianza, profesionalidad.
+
+Verde azulado (#27AE60): Crecimiento y progreso.
+
+Tonos neutros (#333 / #555): Elegancia y contraste.
+
+Alternativa: Una paleta monocromática con un acento de color brillante.

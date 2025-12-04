@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import { useState } from 'react'
 
 // Función para hacer visible la contraseña
 export default function usePasswordToggle() {

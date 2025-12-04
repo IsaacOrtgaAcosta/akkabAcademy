@@ -26,7 +26,7 @@ async function run() {
                 [name]
             );
 
-            if(rows.lengt > 0){
+            if(rows.length > 0){
                 console.log(`Migración ya realizada, se omite: ${name}`);
                 continue;
             }
