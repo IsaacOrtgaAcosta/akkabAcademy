@@ -1,12 +1,8 @@
 .box {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: stretch;
-  border: 1px solid red;
-  height: 100%;
-  width: 100%;
-  gap: 90px;
-  padding: 50px;
   background-color: var(--color-neutral-light);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 }
