@@ -1,0 +1,9 @@
+.card{
+    flex: 1;
+    padding: 20px;
+}
+
+.card:nth-child(2){
+    border: 1.5px solid gray;
+    transform: scale(1.02);
+}

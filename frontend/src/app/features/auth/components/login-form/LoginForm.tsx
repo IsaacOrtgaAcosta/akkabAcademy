@@ -1,24 +1,26 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { TextFieldComponent as TextField } from "@/app/shared/components/ui/text-field/TextField";
 import { ButtonVisibleIcon } from "@/app/shared/components/ui/buttonVisibleIcon/ButtonVisibleIcon";
 import { ButtonComponent } from "@/app/shared/components/ui/button/Button";
 import { AlertComponent } from "@/app/shared/components/ui/alert/Alert";
+import { Box, Link } from "@mui/material";
 import usePasswordToggle from "@/app/shared/hooks/usePasswordToggle";
 import login from "../../api/login";
 import Logo from "@/assets/logo/logo-vertical.svg";
 import styles from "./LoginForm.module.css";
 
-
 export const LoginForm = () => {
+  const navigate = useNavigate();
   const [payLoadLogin, setPayLoadLogin] = useState({
     user: "",
     password: "",
   });
+
   const [errorVisible, setErrorVisible] = useState(false);
   const { type, visible, toggle } = usePasswordToggle();
 
-  const sendPayLoadLogin = async() => {
-
+  const sendPayLoadLogin = async () => {
     try {
       setErrorVisible(false);
       await login(payLoadLogin);
@@ -27,15 +29,20 @@ export const LoginForm = () => {
     }
   };
 
+  const handleRegisterRedirection = () => {
+    navigate("plans");
+  };
+
   return (
     <div className={styles.form}>
       <img src={Logo} alt="logo" className={styles.logo} />
-      { errorVisible ?
+      {errorVisible ? (
         <AlertComponent severity="error" variant="filled" sx={{ mb: 2 }}>
           Hay campos vacíos. Escribe usuario y la contraseña para acceder.
         </AlertComponent>
-        : ''
-      }
+      ) : (
+        ""
+      )}
       <TextField
         label={"email"}
         value={payLoadLogin.user}
@@ -73,6 +80,11 @@ export const LoginForm = () => {
       >
         Acceder
       </ButtonComponent>
+      <Box sx={{ mt: 2 }} onClick={handleRegisterRedirection}>
+        <Link color="primary" sx={{ cursor: "pointer" }}>
+          Registrarse
+        </Link>
+      </Box>
     </div>
   );
 };
