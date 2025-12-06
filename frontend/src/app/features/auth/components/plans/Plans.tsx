@@ -1,174 +1,268 @@
-import { Box, Button, List, ListItem, ListItemText } from "@mui/material";
+import { useState } from "react";
+import { ModalComponent } from "@/app/shared/components/ui/modal/Modal";
+import {
+  Box,
+  Button,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import styles from "./Plans.module.css";
 import StarIcon from "@mui/icons-material/Star";
+import HorizontalLogo from "@/assets/logo/logo-horizontal.svg";
+import styles from "./Plans.module.css";
 
 export const Plans = () => {
+  const [idPlan, setIdPlan] = useState<string | undefined>("");
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpenModal = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const idPlan = (e.currentTarget.closest("[data-idplan]") as HTMLElement)
+    ?.dataset.idplan;
+    setIsOpen(true);
+    setIdPlan(idPlan);
+  };
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <Box className={styles.container}>
-      {/* BASIC PLAN */}
-      <Card sx={{maxWidth: 345, display: 'flex', flexDirection: 'column'}} className={styles.card}>
-        <CardHeader
-          avatar={
-            <Avatar
-              sx={{ bgcolor: "#E5E7EB", color: "#1F2937" }}
-              aria-label="recipe"
-            >
-              B
-            </Avatar>
-          }
-          action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title="Basic"
-          subheader="Ideal para academias pequeñas o proyectos individuales"
-        />
-        
-        <CardContent sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1}}>
-          <h3>
-            Digitaliza tu academia y gestiona tus clases sin complicaciones
-          </h3>
-
-          <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            <List sx={{ listStyleType: "disc", pl: 2 }}>
-              <ListItem sx={{ display: "list-item" }}>
-                <ListItemText primary="Hasta 50 alumnos registrados" />
-              </ListItem>
-              <ListItem sx={{ display: "list-item" }}>
-                <ListItemText primary="1 profesor / 1 administrador" />
-              </ListItem>
-              <ListItem sx={{ display: "list-item" }}>
-                <ListItemText primary="Calendario y control de asistencia" />
-              </ListItem>
-              <ListItem sx={{ display: "list-item" }}>
-                <ListItemText primary="Soporte por email" />
-              </ListItem>
-            </List>
+    <Box component="section" className={styles.section}>
+      <Box className={styles.inner}>
+        <img src={HorizontalLogo} alt="Akkab" className={styles.img} />
+        <Box className={styles.heading}>
+          <Typography variant="h4" component="h1" className={styles.title}>
+            Elige el plan ideal para tu academia
           </Typography>
-          <Box sx={{display: 'flex',  flexDirection: 'column', mt: 'auto'}}>
-            <h3>29€/mes</h3>
-            <Button variant="contained" sx={{ mt: 2 }}>
-              Elegir plan
-            </Button>
-          </Box>
-        </CardContent>
-      </Card>
-
-      {/* SILVER PLAN */}
-      <Card sx={{maxWidth: 345, display: 'flex', flexDirection: 'column'}} className={styles.card}>
-        <CardHeader
-          avatar={
-            <Avatar
-              sx={{ bgcolor: "#3B82F6", color: "#FFFFFF" }}
-              aria-label="recipe"
-            >
-              S
-            </Avatar>
-          }
-          action={<StarIcon sx={{ color: "#1E40AF" }}></StarIcon>}
-          title="Standard"
-          subheader="Perfecto para academias en crecimiento"
-        />
-        
-        <CardContent sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1}}>
-          <h3>
-            Lleva tu academia al siguiente nivel con automatización y control
-          </h3>
-
-          <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            <List sx={{ listStyleType: "disc", pl: 2 }}>
-              <ListItem sx={{ display: "list-item" }}>
-                <ListItemText primary="Hasta 300 alumnos registrados" />
-              </ListItem>
-              <ListItem sx={{ display: "list-item" }}>
-                <ListItemText primary="5 profesores" />
-              </ListItem>
-              <ListItem sx={{ display: "list-item" }}>
-                <ListItemText primary="Pagos con RedSyS y gestión de tarifas" />
-              </ListItem>
-              <ListItem sx={{ display: "list-item" }}>
-                <ListItemText primary="Dashboard con estadísticas" />
-              </ListItem>
-              <ListItem sx={{ display: "list-item" }}>
-                <ListItemText primary="Comunicación segmentada" />
-              </ListItem>
-              <ListItem sx={{ display: "list-item" }}>
-                <ListItemText primary="Exportación de datos" />
-              </ListItem>
-            </List>
+          <Typography variant="subtitle1" className={styles.subtitle}>
+            Sin permanencia · Cambia o cancela cuando quieras
           </Typography>
-          <Box sx={{display: 'flex',  flexDirection: 'column', mt: 'auto'}}>
-            <h3>59€/mes (recomendado)</h3>
-            <Button variant="contained">
-                Elegir plan
-            </Button>
-          </Box>
-        </CardContent>
-      </Card>
+        </Box>
 
-      {/* GOLD PLAN */}
-      <Card sx={{maxWidth: 345, display: 'flex', flexDirection: 'column'}} className={styles.card}>
-        <CardHeader
-          avatar={
-            <Avatar
-              sx={{ bgcolor: "#F97316", color: "#FFFFFF" }}
-              aria-label="recipe"
+        {/* CARDS */}
+        <Box className={styles.container}>
+          {/* BASIC PLAN */}
+          <Card
+            sx={{ maxWidth: 345, display: "flex", flexDirection: "column" }}
+            className={styles.card}
+             data-idPlan={'1'}
+          >
+            <CardHeader
+              avatar={
+                <Avatar
+                  sx={{ bgcolor: "#E5E7EB", color: "#1F2937" }}
+                  aria-label="basic-plan"
+                >
+                  B
+                </Avatar>
+              }
+              title="Basic"
+              subheader="Ideal para academias pequeñas o proyectos individuales"
+              slotProps={{
+                title: { sx: { fontWeight: "bold", fontSize: "20px" } },
+              }}
+            />
+
+            <CardContent
+              sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}
             >
-              P
-            </Avatar>
-          }
-          action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title="Premium"
-          subheader="Diseñado para academias consolidadas"
-        />
-        
-        <CardContent sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1}}>
-          <h3>
-            Control total, automatizaciones avanzadas y analítica profesional
-          </h3>
-          <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            <List sx={{ listStyleType: "disc", pl: 2 }}>
-              <ListItem sx={{ display: "list-item" }}>
-                <ListItemText primary="Alumnos y profesores ilimitados" />
-              </ListItem>
-              <ListItem sx={{ display: "list-item" }}>
-                <ListItemText primary="Módulo multi-centro" />
-              </ListItem>
-              <ListItem sx={{ display: "list-item" }}>
-                <ListItemText primary="Portal de alumnos y familiares" />
-              </ListItem>
-              <ListItem sx={{ display: "list-item" }}>
-                <ListItemText primary="Analítica avanzada e informes" />
-              </ListItem>
-              <ListItem sx={{ display: "list-item" }}>
-                <ListItemText primary="Automatización de recordatorios" />
-              </ListItem>
-              <ListItem sx={{ display: "list-item" }}>
-                <ListItemText primary="Soporte premium (chat + onboarding)" />
-              </ListItem>
-            </List>
-          </Typography>
-          <Box sx={{display: 'flex', flexDirection: 'column', mt: 'auto'}}>
-            <h3>129€/mes</h3>
-            <Button variant="contained" sx={{ mt: 2 }}>
-              Elegir plan
-            </Button>
-          </Box>
-        </CardContent>
-      </Card>
+              <Typography component="h3" className={styles.cardHeading}>
+                Digitaliza tu academia y gestiona tus clases sin complicaciones
+              </Typography>
+
+              <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                <List sx={{ listStyleType: "disc", pl: 2 }}>
+                  <ListItem sx={{ display: "list-item" }}>
+                    <ListItemText primary="Hasta 50 alumnos registrados" />
+                  </ListItem>
+                  <ListItem sx={{ display: "list-item" }}>
+                    <ListItemText primary="1 profesor / 1 administrador" />
+                  </ListItem>
+                  <ListItem sx={{ display: "list-item" }}>
+                    <ListItemText primary="Calendario y control de asistencia" />
+                  </ListItem>
+                  <ListItem sx={{ display: "list-item" }}>
+                    <ListItemText primary="Soporte por email" />
+                  </ListItem>
+                </List>
+              </Typography>
+
+              <Box
+                sx={{ display: "flex", flexDirection: "column", mt: "auto" }}
+              >
+                <Typography component="h3" className={styles.price}>
+                  29€/mes
+                </Typography>
+                <Button
+                  variant="contained"
+                  sx={{ mt: 2 }}
+                  onClick={handleOpenModal}
+                >
+                  Elegir plan
+                </Button>
+              </Box>
+            </CardContent>
+          </Card>
+
+          {/* STANDARD PLAN */}
+          <Card
+            sx={{ maxWidth: 345, display: "flex", flexDirection: "column" }}
+            className={`${styles.card} ${styles.cardFeatured}`}
+             data-idPlan={'2'}
+          >
+            <CardHeader
+              avatar={
+                <Avatar
+                  sx={{ bgcolor: "#3B82F6", color: "#FFFFFF" }}
+                  aria-label="standard-plan"
+                >
+                  S
+                </Avatar>
+              }
+              action={<StarIcon sx={{ color: "#1E40AF" }} />}
+              title="Standard"
+              subheader="Perfecto para academias en crecimiento"
+              slotProps={{
+                title: { sx: { fontWeight: "bold", fontSize: "20px" } },
+              }}
+            />
+
+            <CardContent
+              sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}
+            >
+              <Typography component="h3" className={styles.cardHeading}>
+                Lleva tu academia al siguiente nivel con automatización y
+                control
+              </Typography>
+
+              <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                <List sx={{ listStyleType: "disc", pl: 2 }}>
+                  <ListItem sx={{ display: "list-item" }}>
+                    <ListItemText primary="Todos los servicios Basic y, además:" />
+                  </ListItem>
+                  <ListItem sx={{ display: "list-item" }}>
+                    <ListItemText primary="Hasta 300 alumnos registrados" />
+                  </ListItem>
+                  <ListItem sx={{ display: "list-item" }}>
+                    <ListItemText primary="5 profesores" />
+                  </ListItem>
+                  <ListItem sx={{ display: "list-item" }}>
+                    <ListItemText primary="Pagos con RedSyS y gestión de tarifas" />
+                  </ListItem>
+                  <ListItem sx={{ display: "list-item" }}>
+                    <ListItemText primary="Dashboard con estadísticas" />
+                  </ListItem>
+                  <ListItem sx={{ display: "list-item" }}>
+                    <ListItemText primary="Comunicación segmentada" />
+                  </ListItem>
+                  <ListItem sx={{ display: "list-item" }}>
+                    <ListItemText primary="Exportación de datos" />
+                  </ListItem>
+                </List>
+              </Typography>
+
+              <Box
+                sx={{ display: "flex", flexDirection: "column", mt: "auto" }}
+              >
+                <Typography component="h3" className={styles.price}>
+                  59€/mes (recomendado)
+                </Typography>
+                <Button variant="contained" onClick={handleOpenModal}>
+                  Elegir plan
+                </Button>
+              </Box>
+            </CardContent>
+          </Card>
+
+          {/* PREMIUM PLAN */}
+          <Card
+            sx={{ maxWidth: 345, display: "flex", flexDirection: "column" }}
+            className={styles.card}
+             data-idPlan={'3'}
+          >
+            <CardHeader
+              avatar={
+                <Avatar
+                  sx={{ bgcolor: "#F97316", color: "#FFFFFF" }}
+                  aria-label="premium-plan"
+                >
+                  P
+                </Avatar>
+              }
+              title="Premium"
+              subheader="Diseñado para academias consolidadas"
+              slotProps={{
+                title: { sx: { fontWeight: "bold", fontSize: "20px" } },
+              }}
+            />
+
+            <CardContent
+              sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}
+            >
+              <Typography component="h3" className={styles.cardHeading}>
+                Control total, automatizaciones avanzadas y analítica
+                profesional
+              </Typography>
+
+              <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                <List sx={{ listStyleType: "disc", pl: 2 }}>
+                  <ListItem sx={{ display: "list-item" }}>
+                    <ListItemText primary="Todos los servicios Standard y, además:" />
+                  </ListItem>
+                  <ListItem sx={{ display: "list-item" }}>
+                    <ListItemText primary="Alumnos y profesores ilimitados" />
+                  </ListItem>
+                  <ListItem sx={{ display: "list-item" }}>
+                    <ListItemText primary="Módulo multi-centro" />
+                  </ListItem>
+                  <ListItem sx={{ display: "list-item" }}>
+                    <ListItemText primary="Portal de alumnos y familiares" />
+                  </ListItem>
+                  <ListItem sx={{ display: "list-item" }}>
+                    <ListItemText primary="Analítica avanzada e informes" />
+                  </ListItem>
+                  <ListItem sx={{ display: "list-item" }}>
+                    <ListItemText primary="Automatización de recordatorios" />
+                  </ListItem>
+                  <ListItem sx={{ display: "list-item" }}>
+                    <ListItemText primary="Soporte premium (chat + onboarding)" />
+                  </ListItem>
+                </List>
+              </Typography>
+
+              <Box
+                sx={{ display: "flex", flexDirection: "column", mt: "auto" }}
+              >
+                <Typography component="h3" className={styles.price}>
+                  129€/mes
+                </Typography>
+                <Button
+                  variant="contained"
+                  sx={{ mt: 2 }}
+                  onClick={handleOpenModal}
+                >
+                  Elegir plan
+                </Button>
+              </Box>
+            </CardContent>
+          </Card>
+        </Box>
+
+        {/* TEXTO FINAL OPCIONAL */}
+        <Typography variant="body2" className={styles.helperText}>
+          ¿Tienes dudas sobre qué plan elegir? Escríbenos y te ayudamos a
+          escoger el ideal para tu academia.
+        </Typography>
+      </Box>
+      <ModalComponent open={isOpen} onClose={handleCloseModal} idPlan={idPlan}>
+        <Typography variant="h6" component="h2">
+          Esto es un modal
+        </Typography>
+      </ModalComponent>
     </Box>
   );
 };

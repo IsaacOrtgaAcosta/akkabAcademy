@@ -1,20 +1,64 @@
-.container{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: stretch;
-    gap: 40px;
-    padding: 40px;
-    width: 100%;
-    max-width: 1200px
+.section {
+  background: #f9fafb;
+  padding: 40px 0;    
 }
 
-.card{
-    flex: 1;
-    padding: 20px;
-    cursor: pointer;
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;         
 }
 
-.card:nth-child(2){
-    transform: scale(1.02);
+
+/* LOGO */
+.img {
+  height: 40px;
+}
+
+/* TÍTULOS */
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  font-weight: 700;
+}
+
+.subtitle {
+  color: #6b7280;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.card {
+  flex: 1;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.cardFeatured {
+  transform: scale(1.02);
+}
+
+.cardHeading {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.price {
+  font-weight: 700;
+}
+
+.helperText {
+  margin-top: 16px;
+  color: #6b7280;
 }
