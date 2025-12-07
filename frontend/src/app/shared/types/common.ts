@@ -1,1 +1,3 @@
 //User, Role, Academy, Suscriptions...
+
+export type idPlan = string | undefined;

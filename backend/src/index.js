@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const pool = require("./db");
 const userRoutes = require("./routes/user.routes");
+const plansRoutes = require("./routes/plans.routes"); 
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -11,6 +12,7 @@ app.use(express.json());
 
 // Routes:
 app.get("/api/users", userRoutes);
+app.get("/api/plans", plansRoutes);
 
 // Middelware for errors:
 app.use((err, req, res, next) => {

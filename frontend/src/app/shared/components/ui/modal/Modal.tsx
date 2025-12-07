@@ -1,6 +1,6 @@
 import * as React from 'react';
+import type {idPlan} from '@/app/shared/types/common';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Modal, {type ModalProps as MuiModalProps} from '@mui/material/Modal';
 
 const style = {
@@ -15,7 +15,6 @@ const style = {
   p: 4,
 };
 
-type idPlan = string | undefined;
 
 interface ModalComponentProps extends MuiModalProps {
     idPlan: idPlan;

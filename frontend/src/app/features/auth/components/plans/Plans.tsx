@@ -3,6 +3,7 @@ import { ModalComponent } from "@/app/shared/components/ui/modal/Modal";
 import {
   Box,
   Button,
+
   List,
   ListItem,
   ListItemText,
@@ -15,6 +16,7 @@ import Avatar from "@mui/material/Avatar";
 import StarIcon from "@mui/icons-material/Star";
 import HorizontalLogo from "@/assets/logo/logo-horizontal.svg";
 import styles from "./Plans.module.css";
+import { RegisterForm } from "../register-form/RegisterForm";
 
 export const Plans = () => {
   const [idPlan, setIdPlan] = useState<string | undefined>("");
@@ -22,7 +24,7 @@ export const Plans = () => {
 
   const handleOpenModal = (e: React.MouseEvent<HTMLButtonElement>) => {
     const idPlan = (e.currentTarget.closest("[data-idplan]") as HTMLElement)
-    ?.dataset.idplan;
+      ?.dataset.idplan;
     setIsOpen(true);
     setIdPlan(idPlan);
   };
@@ -33,7 +35,15 @@ export const Plans = () => {
   return (
     <Box component="section" className={styles.section}>
       <Box className={styles.inner}>
-        <img src={HorizontalLogo} alt="Akkab" className={styles.img} />
+        <Box
+          component="img"
+          src={HorizontalLogo}
+          alt="Akkab"
+          sx={{
+            height: 40,
+            display: "block",
+          }}
+        />
         <Box className={styles.heading}>
           <Typography variant="h4" component="h1" className={styles.title}>
             Elige el plan ideal para tu academia
@@ -49,15 +59,15 @@ export const Plans = () => {
           <Card
             sx={{ maxWidth: 345, display: "flex", flexDirection: "column" }}
             className={styles.card}
-             data-idPlan={'1'}
+            data-idPlan={"1"}
           >
             <CardHeader
               avatar={
                 <Avatar
-                  sx={{ bgcolor: "#E5E7EB", color: "#1F2937" }}
+                  sx={{ bgcolor: "#E5E7EB", color: "#1F2937", fontSize: '14px' }}
                   aria-label="basic-plan"
                 >
-                  B
+                  BAS
                 </Avatar>
               }
               title="Basic"
@@ -108,23 +118,23 @@ export const Plans = () => {
             </CardContent>
           </Card>
 
-          {/* STANDARD PLAN */}
+          {/* PROFESSIONAL PLAN */}
           <Card
             sx={{ maxWidth: 345, display: "flex", flexDirection: "column" }}
             className={`${styles.card} ${styles.cardFeatured}`}
-             data-idPlan={'2'}
+            data-idPlan={"2"}
           >
             <CardHeader
               avatar={
                 <Avatar
-                  sx={{ bgcolor: "#3B82F6", color: "#FFFFFF" }}
-                  aria-label="standard-plan"
+                  sx={{ bgcolor: "#3B82F6", color: "#FFFFFF", fontSize: '14px' }}
+                  aria-label="Profesional-plan"
                 >
-                  S
+                  PRO
                 </Avatar>
               }
               action={<StarIcon sx={{ color: "#1E40AF" }} />}
-              title="Standard"
+              title="Profesional"
               subheader="Perfecto para academias en crecimiento"
               slotProps={{
                 title: { sx: { fontWeight: "bold", fontSize: "20px" } },
@@ -182,15 +192,15 @@ export const Plans = () => {
           <Card
             sx={{ maxWidth: 345, display: "flex", flexDirection: "column" }}
             className={styles.card}
-             data-idPlan={'3'}
+            data-idPlan={"3"}
           >
             <CardHeader
               avatar={
                 <Avatar
-                  sx={{ bgcolor: "#F97316", color: "#FFFFFF" }}
+                  sx={{ bgcolor: "#F97316", color: "#FFFFFF", fontSize: '14px' }}
                   aria-label="premium-plan"
                 >
-                  P
+                  PRE
                 </Avatar>
               }
               title="Premium"
@@ -211,7 +221,7 @@ export const Plans = () => {
               <Typography variant="body2" sx={{ color: "text.secondary" }}>
                 <List sx={{ listStyleType: "disc", pl: 2 }}>
                   <ListItem sx={{ display: "list-item" }}>
-                    <ListItemText primary="Todos los servicios Standard y, además:" />
+                    <ListItemText primary="Todos los servicios del plan Profesional y, además:" />
                   </ListItem>
                   <ListItem sx={{ display: "list-item" }}>
                     <ListItemText primary="Alumnos y profesores ilimitados" />
@@ -258,11 +268,7 @@ export const Plans = () => {
           escoger el ideal para tu academia.
         </Typography>
       </Box>
-      <ModalComponent open={isOpen} onClose={handleCloseModal} idPlan={idPlan}>
-        <Typography variant="h6" component="h2">
-          Esto es un modal
-        </Typography>
-      </ModalComponent>
+      <RegisterForm isOpen={isOpen} onClose={handleCloseModal} idPlan={idPlan}/>
     </Box>
   );
 };
