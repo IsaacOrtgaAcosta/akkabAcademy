@@ -6,3 +6,5 @@ const router = express.Router();
 router.get("/", PlansController.getAll);
 router.get("/:id", PlansController.getById);
 router.post("/", PlansController.create);
+
+module.exports = router;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ModalComponent } from "@/app/shared/components/ui/modal/Modal";
 import {
   Box,
@@ -17,10 +17,12 @@ import StarIcon from "@mui/icons-material/Star";
 import HorizontalLogo from "@/assets/logo/logo-horizontal.svg";
 import styles from "./Plans.module.css";
 import { RegisterForm } from "../register-form/RegisterForm";
+import { getPlans } from "./getPlans";
 
 export const Plans = () => {
   const [idPlan, setIdPlan] = useState<string | undefined>("");
   const [isOpen, setIsOpen] = useState(false);
+  const [plans, setPlans] = useState({});
 
   const handleOpenModal = (e: React.MouseEvent<HTMLButtonElement>) => {
     const idPlan = (e.currentTarget.closest("[data-idplan]") as HTMLElement)
@@ -31,6 +33,18 @@ export const Plans = () => {
   const handleCloseModal = () => {
     setIsOpen(false);
   };
+
+
+  // Llamada a getPlans para obtener los datos de cada plan:
+useEffect(() => {
+  getPlans()
+  .then(setPlans)
+  .catch((error) => {
+    console.log(error);
+  })
+
+  console.log(plans);
+}, []);
 
   return (
     <Box component="section" className={styles.section}>
