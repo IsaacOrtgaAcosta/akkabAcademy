@@ -140,7 +140,7 @@ export async function httpClient<T>(
       response = await doRequest(newToken);
     }
   }
-  console.log('RESUPUESTA: ', response)
+
   // SI SIGUE SIN ESTAR OK, LANZAMOS UN ERROR ENRIQUECIDO
   if (!response.ok) {
     let errorData: unknown = null;

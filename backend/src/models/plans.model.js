@@ -56,6 +56,14 @@ class PlansModel {
     );
     return { id: result.insertId, code, name };
   }
+
+  static async getAllPlanServices () {
+    const [ rows ] = await pool.query(
+      `SELECT * FROM plan_services ORDER BY sort_order`
+    );
+
+    return rows;
+  }
 }
 
 module.exports = PlansModel;

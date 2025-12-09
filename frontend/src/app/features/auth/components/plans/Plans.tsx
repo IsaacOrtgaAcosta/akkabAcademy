@@ -42,9 +42,9 @@ useEffect(() => {
     console.log(error);
   })
 
-  console.log(plans);
 }, []);
 
+console.log('PLANS: ', plans)
   return (
     <Box component="section" className={styles.section}>
       <Box className={styles.inner}>
