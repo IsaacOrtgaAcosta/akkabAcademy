@@ -14,7 +14,7 @@ class PlansController {
   static async getById(req, res, next) {
     try {
       const { id } = req.params;
-      const plan = await PlansService.getUserById(id);
+      const plan = await PlansService.getPlanById(id);
       res.json(plan);
     } catch (error) {
       next(error);

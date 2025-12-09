@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const pool = require("./db");
 const userRoutes = require("./routes/user.routes");
 const plansRoutes = require("./routes/plans.routes"); 
@@ -7,12 +8,17 @@ const plansRoutes = require("./routes/plans.routes");
 const app = express();
 const PORT = process.env.PORT || 4000;
 
+app.use(cors({
+    origin: "http://localhost:3000",        
+    credentials: true                       
+}));
+
 // Parse the JSON request body:
 app.use(express.json());
 
 // Routes:
-app.get("/api/users", userRoutes);
-app.get("/api/plans", plansRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/plans", plansRoutes);
 
 // Middelware for errors:
 app.use((err, req, res, next) => {

@@ -16,9 +16,9 @@ class PlansService{
         return plan;
     }
 
-    static async createUser(data){
+    static async createPlan(data){
         // Aquí habría que hacer valiación de los datos que me vienen
-        const plans = await PlansModel.create(data);
+        const plans = await PlansModel.createPlan(data);
         return plans;
     }
 }

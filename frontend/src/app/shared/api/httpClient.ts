@@ -28,13 +28,13 @@ function getAccessToken(): string | null {
   return localStorage.getItem("access_token");
 }
 
-// HELPER PARA LEER EL REFRESH TOKEN:
+// HELPER PARA LEER EL REFRESH TOKEN: TOKEN DE LARGA DURACIÓN (DÍAS O SEMANAS) Y SE USA PARA RECIBIR UN ACCESS TOKEN NUEVO CUANDO ESTE HA CADUCADO
+// EL REFRESHTOKEN IRÍA EN UNA COOKIE HTTPONLY (MENOS VULNERABLE A XSS)
 function getRefreshToken(): string | null {
   return localStorage.getItem("refresh_token");
 }
 
 // HELPER PARA GUARRDAR TOKENS DESPUÉS DE UN REFRESH
-// Preguntar: a qué correspondería el refreshToken, qué token se está guardando ahí a parte del token de acceso?
 function saveToken(accessToken: string, refreshToken?: string) {
   localStorage.setItem("access_token", accessToken);
   if (refreshToken) {
@@ -82,12 +82,12 @@ export async function httpClient<T>(
     headers,
     ...restOptions
   } = options;
-
   const url = `${API_BASE_URL}${path}`;
+  console.log('AQUÍ LA URL: ', url);
 
   // CONSTRUIMOS HEADERS BASE
-  const finalHeaders: HeadersInit = {
-    ...(headers ?? {}),
+  const finalHeaders: Record<string, string> = {
+    ...(headers as Record<string, string> ?? {}),
   };
 
   // SI HAY CUERPO Y NO ES FormData, LO SERIALIZAMOS COMO JSON
@@ -105,7 +105,7 @@ export async function httpClient<T>(
   if (auth) {
     const token = getAccessToken();
     if (token) {
-      finalHeaders["Authorizatiuon"] = `Bearer ${token}`;
+      finalHeaders["Authorization"] = `Bearer ${token}`;
     }
   }
 
@@ -140,7 +140,7 @@ export async function httpClient<T>(
       response = await doRequest(newToken);
     }
   }
-
+  console.log('RESUPUESTA: ', response)
   // SI SIGUE SIN ESTAR OK, LANZAMOS UN ERROR ENRIQUECIDO
   if (!response.ok) {
     let errorData: unknown = null;

@@ -7,8 +7,8 @@ export interface Plan{
 }
 
 export function getPlans(){
-    return httpClient<Plan[]>('/plans', {
+    return httpClient<Plan[]>('/api/plans', {
         method: "GET",
-        auth: true
+        auth: false
     });
 }

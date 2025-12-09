@@ -1,5 +1,6 @@
 const UserModel = require("../models/user.model");
 
+// TODA LA LÓGICA DE NEGOCIO HA DE IR AQUÍ (YANN). LA INTENCIÓN DE ESTE ARCHIVO ES NO ENSUCIAR EL MODELO CON FILTROS EXCESIVOS, ETC. SI TENGO QUE BUSCAR UN USUARIO QUE TIENE EL PELO ROJO, POR EJEMPLO, LO HAGO AQUÍ
 class UserService {
     
     static async getAllUsers() {
@@ -8,6 +9,7 @@ class UserService {
     }
 
     static async getUserById(id){
+        
         const user = await UserModel.findById(id);
         if(!user){
             const error = new Error("User not found");

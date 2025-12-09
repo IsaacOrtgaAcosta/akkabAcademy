@@ -16,7 +16,7 @@ class PlansModel {
     return plan[0] || null;
   }
 
-  static async create({
+  static async createPlan({
     code,
     name,
     short_description,
@@ -40,7 +40,7 @@ class PlansModel {
         is_active,
         stripe_product_id, 
         stripe_price_id)
-        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         code,
         name,

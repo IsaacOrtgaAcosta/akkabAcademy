@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { ModalComponent } from "@/app/shared/components/ui/modal/Modal";
 import {
   Box,
   Button,
@@ -98,7 +97,6 @@ useEffect(() => {
                 Digitaliza tu academia y gestiona tus clases sin complicaciones
               </Typography>
 
-              <Typography variant="body2" sx={{ color: "text.secondary" }}>
                 <List sx={{ listStyleType: "disc", pl: 2 }}>
                   <ListItem sx={{ display: "list-item" }}>
                     <ListItemText primary="Hasta 50 alumnos registrados" />
@@ -113,7 +111,6 @@ useEffect(() => {
                     <ListItemText primary="Soporte por email" />
                   </ListItem>
                 </List>
-              </Typography>
 
               <Box
                 sx={{ display: "flex", flexDirection: "column", mt: "auto" }}
@@ -163,7 +160,6 @@ useEffect(() => {
                 control
               </Typography>
 
-              <Typography variant="body2" sx={{ color: "text.secondary" }}>
                 <List sx={{ listStyleType: "disc", pl: 2 }}>
                   <ListItem sx={{ display: "list-item" }}>
                     <ListItemText primary="Todos los servicios Basic y, además:" />
@@ -187,7 +183,6 @@ useEffect(() => {
                     <ListItemText primary="Exportación de datos" />
                   </ListItem>
                 </List>
-              </Typography>
 
               <Box
                 sx={{ display: "flex", flexDirection: "column", mt: "auto" }}
@@ -232,7 +227,6 @@ useEffect(() => {
                 profesional
               </Typography>
 
-              <Typography variant="body2" sx={{ color: "text.secondary" }}>
                 <List sx={{ listStyleType: "disc", pl: 2 }}>
                   <ListItem sx={{ display: "list-item" }}>
                     <ListItemText primary="Todos los servicios del plan Profesional y, además:" />
@@ -256,7 +250,6 @@ useEffect(() => {
                     <ListItemText primary="Soporte premium (chat + onboarding)" />
                   </ListItem>
                 </List>
-              </Typography>
 
               <Box
                 sx={{ display: "flex", flexDirection: "column", mt: "auto" }}
