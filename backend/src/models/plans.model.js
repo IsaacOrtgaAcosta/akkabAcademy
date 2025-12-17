@@ -59,7 +59,7 @@ class PlansModel {
 
   static async getAllPlanServices () {
     const [ rows ] = await pool.query(
-      `SELECT * FROM plan_services ORDER BY sort_order`
+      `SELECT * FROM plan_services ORDER BY plan_id, sort_order ASC`
     );
 
     return rows;

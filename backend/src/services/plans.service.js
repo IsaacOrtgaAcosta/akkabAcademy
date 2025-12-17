@@ -5,7 +5,17 @@ class PlansService{
          console.log("includeServices en service =>", includeServices, typeof includeServices);
         const plans = await PlansModel.findAll();
         if(includeServices === "services"){
-            return "incluye servicios";
+            const plan_services = await PlansModel.getAllPlanServices();
+            let newPlan = plans.map( plan => {
+                const newPlan_services = plan_services.filter(s => s.plan_id = plan.id)
+                .sort((a, b) => a.sort_order - b.sort_order)
+                .map(p => p.label)
+                return {
+                    ...plan,
+                    newPlan_services
+                }
+            })
+            return {newPlan};
         }
         return plans;
     };

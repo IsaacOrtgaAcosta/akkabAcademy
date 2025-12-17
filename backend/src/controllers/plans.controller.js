@@ -7,7 +7,6 @@ class PlansController {
       const includeServices = req.query.include;
       const plans = await PlansService.getAllPlans( includeServices );
       res.json(plans);
-      console.log('DESDE BACK: ', res.json(plans))
     } catch (error) {
       next(error);
     }
