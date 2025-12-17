@@ -15,14 +15,11 @@ import StarIcon from "@mui/icons-material/Star";
 import HorizontalLogo from "@/assets/logo/logo-horizontal.svg";
 import styles from "./Plans.module.css";
 import { RegisterForm } from "../register-form/RegisterForm";
-import { getPlans } from "./getPlans";
-import { Error } from "@/app/shared/components/ui/error/Error";
-import {Plan} from "./getPlans";
 
 export const Plans = () => {
   const [idPlan, setIdPlan] = useState<string | undefined>("");
   const [isOpen, setIsOpen] = useState(false);
-  const [plans, setPlans] = useState<Plan[]>([]);
+
 
   const handleOpenModal = (e: React.MouseEvent<HTMLButtonElement>) => {
     const idPlan = (e.currentTarget.closest("[data-idplan]") as HTMLElement)
@@ -34,16 +31,6 @@ export const Plans = () => {
     setIsOpen(false);
   };
 
-  // Llamada a getPlans para obtener los datos de cada plan:
-  useEffect(() => {
-    getPlans()
-      .then(setPlans)
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
-  console.log("PLANS: ", plans);
   return (
     <Box component="section" className={styles.section}>
       <Box className={styles.inner}>
@@ -65,8 +52,8 @@ export const Plans = () => {
           </Typography>
         </Box>
 
-        {/* CARDS */}
-        {plans.length > 0 ? (
+        {/* CARDS O ERROR */}
+       
           <Box className={styles.container}>
             {/* BASIC PLAN */}
             <Card
@@ -281,9 +268,7 @@ export const Plans = () => {
               </CardContent>
             </Card>
           </Box>
-        ) : (
-          <Error />
-        )}
+       
 
         {/* TEXTO FINAL OPCIONAL */}
         <Typography variant="body2" className={styles.helperText}>

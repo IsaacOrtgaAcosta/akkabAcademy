@@ -1,52 +1,50 @@
-import { Avatar, Box, Button, Card, CardContent, CardHeader, Typography } from '@mui/material'
+import { useNavigate } from "react-router-dom";
+import { Box, Button, Card, CardContent, Typography } from "@mui/material";
 import styles from "./Error.module.css";
+import ErrorImg from "@/assets/illustrations/error-illustration.svg";
 
-export const Error = () => {
+type ErrorViewProps = {
+    status: number,
+};
+
+export const ErrorView = ({status}: ErrorViewProps) => {
+
+    const navigate = useNavigate();
+
   return (
-    <Box>
+    <Box className={styles.boxError}>
       <Card
-            sx={{ maxWidth: 345, display: "flex", flexDirection: "column" }}
-            className={styles.card}
-            data-idPlan={"1"}
-          >
-            <CardHeader
-              avatar={
-                <Avatar
-                  sx={{ bgcolor: "#E5E7EB", color: "#1F2937", fontSize: '14px' }}
-                  aria-label="basic-plan"
-                >
-                  BAS
-                </Avatar>
-              }
-              title="Basic"
-              subheader="Ideal para academias pequeñas o proyectos individuales"
-              slotProps={{
-                title: { sx: { fontWeight: "bold", fontSize: "20px" } },
-              }}
-            />
-
-            <CardContent
-              sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}
+        sx={{ display: "flex", flexDirection: "column" }}
+        className={styles.card}
+        data-idPlan={"1"}
+      >
+        <CardContent
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Box className={styles.boxTitle}>
+            <Typography
+              component="h1"
+              sx={{ fontSize: "50px", fontWeight: "bold" }}
+              className={styles.cardHeading}
             >
-              <Typography component="h3" className={styles.cardHeading}>
-                Error
-              </Typography>
-              <Box
-                sx={{ display: "flex", flexDirection: "column", mt: "auto" }}
-              >
-                <Typography component="h3" className={styles.price}>
-                  Algo no ha ido como esperábamos. Estamos trabajando para solucionarlo
-                </Typography>
-                <Button
-                  variant="contained"
-                  sx={{ mt: 2 }}
-                  onClick={() => ('')}
-                >
-                 Volver al inicio
-                </Button>
-              </Box>
-            </CardContent>
-          </Card>
+              {`Error ${status.toString()}`}
+            </Typography>
+          </Box>
+          <Box sx={{ display: "flex", flexDirection: "column", mt: "auto", mb:"20px"}}>
+            <Typography component="h3" sx={{fontSize: '22px'}}>
+              Algo no ha ido como esperábamos. Estamos trabajando para
+              solucionarlo
+            </Typography>
+          </Box>
+          <img src={ErrorImg} alt="Error" className={styles.img} />
+          <Button variant="contained" sx={{ mt: 2 }} onClick={() => navigate(-1)}>
+            Volver
+          </Button>
+        </CardContent>
+      </Card>
     </Box>
-  )
-}
+  );
+};

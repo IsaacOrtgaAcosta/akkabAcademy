@@ -1,9 +1,26 @@
+import { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { Plans } from "../../components/plans/Plans";
+import { getPlans, type Plan } from "@/app/features/auth/components/plans/getPlans";
+import {ErrorView} from '@/app/shared/components/ui/error/Error';
 import styles from "./PlansPage.module.css";
 
 export const PlansPage = () => {
+    const [plans, setPlans] = useState<Plan[]>([]);
+    const [status, setStatus] = useState(200);
+  // Llamada a getPlans para obtener los datos de cada plan:
+  useEffect(() => {
+    getPlans("services")
+      .then(setPlans)
+      .catch((error) => {
+        setStatus(error.status);
+        console.log(error);
+      });
+  }, []);
+  console.log("PLANS: ", plans);
   return (
+    <>
+    { plans && plans.length > 0? ( 
     <Box className={styles.box}>
       <Plans />
       <Box className={styles.faq}>
@@ -31,5 +48,7 @@ export const PlansPage = () => {
         </ul>
       </Box>
     </Box>
+    ): (<ErrorView status={status}/>)}
+    </>
   );
 };
