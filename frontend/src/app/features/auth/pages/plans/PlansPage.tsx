@@ -1,26 +1,50 @@
 import { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { Plans } from "../../components/plans/Plans";
-import { getPlans, type Plan } from "@/app/features/auth/components/plans/getPlans";
-import {ErrorView} from '@/app/shared/components/ui/error/Error';
+import {
+  getPlans,
+  type Plan,
+} from "@/app/features/auth/components/plans/getPlans";
+import { ErrorView } from "@/app/shared/components/ui/error/Error";
 import styles from "./PlansPage.module.css";
 
 export const PlansPage = () => {
-    const [plans, setPlans] = useState<Plan[]>([]);
-    const [status, setStatus] = useState(200);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [plans, setPlans] = useState<Plan[]>([]);
+  const [status, setStatus] = useState<number | null>(null);
   // Llamada a getPlans para obtener los datos de cada plan:
   useEffect(() => {
-    getPlans("services")
-      .then(setPlans)
-      .catch((error) => {
-        setStatus(error.status);
-        console.log(error);
-      });
+    const fetchPlans = async () => {
+      setLoading(true);
+      try {
+        const data = await getPlans("services");
+        console.log("LA DATA: ", data);
+        setPlans(data);
+      } catch (error: any) {
+        console.log("TYPE STATUS: ", typeof error.status);
+        setStatus(error.status ?? 500);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPlans();
   }, []);
   console.log("PLANS: ", plans);
+
+  if (loading) {
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <h1 style={{ fontSize: "40px" }}>Cargando...</h1>
+      </Box>
+    );
+  }
+  
+  if (status && status !== 200) {
+    return <ErrorView status={status} />;
+  }
+
   return (
-    <>
-    { plans && plans.length > 0? ( 
     <Box className={styles.box}>
       <Plans />
       <Box className={styles.faq}>
@@ -48,7 +72,5 @@ export const PlansPage = () => {
         </ul>
       </Box>
     </Box>
-    ): (<ErrorView status={status}/>)}
-    </>
   );
 };

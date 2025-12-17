@@ -4,7 +4,7 @@ import styles from "./Error.module.css";
 import ErrorImg from "@/assets/illustrations/error-illustration.svg";
 
 type ErrorViewProps = {
-    status: number,
+    status: number | null,
 };
 
 export const ErrorView = ({status}: ErrorViewProps) => {
@@ -30,7 +30,7 @@ export const ErrorView = ({status}: ErrorViewProps) => {
               sx={{ fontSize: "50px", fontWeight: "bold" }}
               className={styles.cardHeading}
             >
-              {`Error ${status.toString()}`}
+              {`Error ${status}`}
             </Typography>
           </Box>
           <Box sx={{ display: "flex", flexDirection: "column", mt: "auto", mb:"20px"}}>
