@@ -83,7 +83,6 @@ export async function httpClient<T>(
     ...restOptions
   } = options;
   const url = `${API_BASE_URL}${path}`;
-  console.log('AQUÍ LA URL: ', url);
 
   // CONSTRUIMOS HEADERS BASE
   const finalHeaders: Record<string, string> = {

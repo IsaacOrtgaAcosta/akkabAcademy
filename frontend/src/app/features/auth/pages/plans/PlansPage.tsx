@@ -3,25 +3,25 @@ import { Box, Typography } from "@mui/material";
 import { Plans } from "../../components/plans/Plans";
 import {
   getPlans,
-  type Plan,
+  type PlanResponseProps,
 } from "@/app/features/auth/components/plans/getPlans";
+import { Loading } from "@/app/shared/components/ui/loading/Loading";
 import { ErrorView } from "@/app/shared/components/ui/error/Error";
 import styles from "./PlansPage.module.css";
 
 export const PlansPage = () => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [plans, setPlans] = useState<Plan[]>([]);
+  const [plans, setPlans] = useState<PlanResponseProps[]>([]);
   const [status, setStatus] = useState<number | null>(null);
+
   // Llamada a getPlans para obtener los datos de cada plan:
   useEffect(() => {
     const fetchPlans = async () => {
       setLoading(true);
       try {
         const data = await getPlans("services");
-        console.log("LA DATA: ", data);
-        setPlans(data);
+        setPlans(data.newPlan);
       } catch (error: any) {
-        console.log("TYPE STATUS: ", typeof error.status);
         setStatus(error.status ?? 500);
       } finally {
         setLoading(false);
@@ -34,9 +34,7 @@ export const PlansPage = () => {
 
   if (loading) {
     return (
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
-        <h1 style={{ fontSize: "40px" }}>Cargando...</h1>
-      </Box>
+      <Loading />
     );
   }
   
@@ -46,7 +44,7 @@ export const PlansPage = () => {
 
   return (
     <Box className={styles.box}>
-      <Plans />
+      <Plans plans={plans}/>
       <Box className={styles.faq}>
         <Typography variant="subtitle1" className={styles.faqTitle}>
           Preguntas frecuentes

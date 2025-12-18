@@ -7,12 +7,12 @@ class PlansService{
         if(includeServices === "services"){
             const plan_services = await PlansModel.getAllPlanServices();
             let newPlan = plans.map( plan => {
-                const newPlan_services = plan_services.filter(s => s.plan_id = plan.id)
+                const services = plan_services.filter(s => s.plan_id === plan.id)
                 .sort((a, b) => a.sort_order - b.sort_order)
                 .map(p => p.label)
                 return {
                     ...plan,
-                    newPlan_services
+                    services
                 }
             })
             return {newPlan};

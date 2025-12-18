@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Box,
   Button,
@@ -15,11 +15,16 @@ import StarIcon from "@mui/icons-material/Star";
 import HorizontalLogo from "@/assets/logo/logo-horizontal.svg";
 import styles from "./Plans.module.css";
 import { RegisterForm } from "../register-form/RegisterForm";
+import type { PlanResponseProps} from "./getPlans";
+import {PLAN_COLORS} from './getPlans';
 
-export const Plans = () => {
+interface PlansProps {
+  plans: PlanResponseProps[];
+}
+
+export const Plans = ({ plans }: PlansProps) => {
   const [idPlan, setIdPlan] = useState<string | undefined>("");
   const [isOpen, setIsOpen] = useState(false);
-
 
   const handleOpenModal = (e: React.MouseEvent<HTMLButtonElement>) => {
     const idPlan = (e.currentTarget.closest("[data-idplan]") as HTMLElement)
@@ -53,10 +58,84 @@ export const Plans = () => {
         </Box>
 
         {/* CARDS O ERROR */}
-       
-          <Box className={styles.container}>
-            {/* BASIC PLAN */}
-            <Card
+        <Box className={styles.container}>
+          {plans.map((plan) => {
+            const isRecommended = plan.code === "PRO";
+
+            const color = PLAN_COLORS[plan.code]
+            return (
+              <Card
+                sx={{ maxWidth: 345, display: "flex", flexDirection: "column" }}
+                className={styles.card}
+                data-idPlan={"1"}
+              >
+                <CardHeader
+                  avatar={
+                    <Avatar
+                      sx={{
+                        bgcolor: color,
+                        color: "#1F2937",
+                        fontSize: "14px",
+                      }}
+                      aria-label="basic-plan"
+                    >
+                      {plan.code}
+                    </Avatar>
+                  }
+                  title={plan.name}
+                  subheader={plan.short_description}
+                  slotProps={{
+                    title: { sx: { fontWeight: "bold", fontSize: "20px" } },
+                  }}
+                />
+
+                <CardContent
+                  sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}
+                >
+                  <Typography component="h3" className={styles.cardHeading}>
+                    {plan.long_description}
+                  </Typography>
+
+                  {/* Pintamos los servicios de cada plan */}
+                  {plan.services.length > 0 ? (
+                    <List sx={{ listStyleType: "disc", pl: 2 }}>
+                      {plan.services.map((service, serviceIndex) => (
+                        <ListItem
+                          key={`${plan.id}-${serviceIndex}`}
+                          sx={{ display: "list-item" }}
+                        >
+                          <ListItemText primary={service} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  ) : (
+                    ""
+                  )}
+
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      mt: "auto",
+                    }}
+                  >
+                    <Typography component="h3" className={styles.price}>
+                      29€/mes
+                    </Typography>
+                    <Button
+                      variant="contained"
+                      sx={{ mt: 2 }}
+                      onClick={handleOpenModal}
+                    >
+                      Elegir plan
+                    </Button>
+                  </Box>
+                </CardContent>
+              </Card>
+            );
+          })}
+          {/* BASIC PLAN */}
+          {/* <Card
               sx={{ maxWidth: 345, display: "flex", flexDirection: "column" }}
               className={styles.card}
               data-idPlan={"1"}
@@ -119,10 +198,10 @@ export const Plans = () => {
                   </Button>
                 </Box>
               </CardContent>
-            </Card>
+            </Card> */}
 
-            {/* PROFESSIONAL PLAN */}
-            <Card
+          {/* PROFESSIONAL PLAN */}
+          {/* <Card
               sx={{ maxWidth: 345, display: "flex", flexDirection: "column" }}
               className={`${styles.card} ${styles.cardFeatured}`}
               data-idPlan={"2"}
@@ -191,10 +270,10 @@ export const Plans = () => {
                   </Button>
                 </Box>
               </CardContent>
-            </Card>
+            </Card> */}
 
-            {/* PREMIUM PLAN */}
-            <Card
+          {/* PREMIUM PLAN */}
+          {/* <Card
               sx={{ maxWidth: 345, display: "flex", flexDirection: "column" }}
               className={styles.card}
               data-idPlan={"3"}
@@ -266,9 +345,8 @@ export const Plans = () => {
                   </Button>
                 </Box>
               </CardContent>
-            </Card>
-          </Box>
-       
+            </Card> */}
+        </Box>
 
         {/* TEXTO FINAL OPCIONAL */}
         <Typography variant="body2" className={styles.helperText}>
