@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   Box,
   Button,
+  Link,
   List,
   ListItem,
   ListItemText,
@@ -17,6 +18,7 @@ import styles from "./Plans.module.css";
 import { RegisterForm } from "../register-form/RegisterForm";
 import type { PlanResponseProps} from "./getPlans";
 import {PLAN_COLORS} from './getPlans';
+import { priceFormatter, currentFormatter } from "@/app/shared/lib/formatters/price";
 
 interface PlansProps {
   plans: PlanResponseProps[];
@@ -60,14 +62,14 @@ export const Plans = ({ plans }: PlansProps) => {
         {/* CARDS O ERROR */}
         <Box className={styles.container}>
           {plans.map((plan) => {
+            // Se filtra si es el PRO para ajustar estilos como plan recomendado
             const isRecommended = plan.code === "PRO";
-
             const color = PLAN_COLORS[plan.code]
             return (
               <Card
                 sx={{ maxWidth: 345, display: "flex", flexDirection: "column" }}
-                className={styles.card}
-                data-idPlan={"1"}
+                className={isRecommended ? `${styles.card} ${styles.cardFeatured}` : `${styles.card}`}
+                data-idPlan={plan.id}
               >
                 <CardHeader
                   avatar={
@@ -77,11 +79,13 @@ export const Plans = ({ plans }: PlansProps) => {
                         color: "#1F2937",
                         fontSize: "14px",
                       }}
-                      aria-label="basic-plan"
+                      aria-label={plan.code}
                     >
                       {plan.code}
                     </Avatar>
                   }
+                  action={ isRecommended ? <StarIcon sx={{ color: "#1E40AF" }} /> : ''}
+
                   title={plan.name}
                   subheader={plan.short_description}
                   slotProps={{
@@ -120,7 +124,7 @@ export const Plans = ({ plans }: PlansProps) => {
                     }}
                   >
                     <Typography component="h3" className={styles.price}>
-                      29€/mes
+                      {`${priceFormatter(plan.price_cents)} ${currentFormatter(plan.currency)} / mes`}
                     </Typography>
                     <Button
                       variant="contained"
@@ -349,8 +353,8 @@ export const Plans = ({ plans }: PlansProps) => {
         </Box>
 
         {/* TEXTO FINAL OPCIONAL */}
-        <Typography variant="body2" className={styles.helperText}>
-          ¿Tienes dudas sobre qué plan elegir? Escríbenos y te ayudamos a
+        <Typography variant="body2" sx={{fontSize: 20, mt: 2, color: '#6b7280'}} className={styles.helperText}>
+          ¿Tienes dudas sobre qué plan elegir? <Link href="/contacto" underline="hover">Escríbenos</Link> y te ayudamos a
           escoger el ideal para tu academia.
         </Typography>
       </Box>
