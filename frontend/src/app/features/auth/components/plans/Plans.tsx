@@ -14,11 +14,11 @@ import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
 import StarIcon from "@mui/icons-material/Star";
 import HorizontalLogo from "@/assets/logo/logo-horizontal.svg";
-import styles from "./Plans.module.css";
-import { RegistrationForm } from "../registration-form/RegistrationForm";
-import type { PlanResponseProps} from "./getPlans";
 import {PLAN_COLORS} from './getPlans';
 import { priceFormatter, currentFormatter } from "@/app/shared/lib/formatters/price";
+import type { PlanResponseProps} from "./getPlans";
+import { RegistrationPage } from "../../pages/registration/RegistrationPage";
+import styles from "./Plans.module.css";
 
 
 interface PlansProps {
@@ -150,7 +150,7 @@ export const Plans = ({ plans }: PlansProps) => {
           escoger el ideal para tu academia.
         </Typography>
       </Box>
-      <RegistrationForm
+      <RegistrationPage
         isOpen={isOpen}
         onClose={handleCloseModal}
         idPlan={idPlan}

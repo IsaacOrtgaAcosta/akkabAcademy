@@ -46,7 +46,7 @@ export function getPlans(param? : string) {
 
 export function getPlan(id: string){
   console.log('EL ID: ', id)
-  return httpClient<GetPlanResponse>(`/api/plans/${id}`, {
+  return httpClient<PlanResponseProps>(`/api/plans/${id}`, {
     method: 'GET',
     auth: false,
   });

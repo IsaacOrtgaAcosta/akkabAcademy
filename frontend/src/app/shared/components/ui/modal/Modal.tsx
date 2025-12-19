@@ -14,18 +14,22 @@ const style = {
   p: 4,
 };
 
-interface ModalComponentProps extends MuiModalProps {}
+type ClassNameType = string;
+interface ModalComponentProps extends MuiModalProps {
+  className: ClassNameType;
+}
 
 export const ModalComponent: React.FC<ModalComponentProps> = ({
   open,
   onClose,
   children,
+  className,
   ...rest
 }) => {
   return (
     <div>
       <Modal open={open} onClose={onClose} {...rest}>
-        <Box sx={style}>{children}</Box>
+        <Box className={className} sx={style}>{children}</Box>
       </Modal>
     </div>
   );
