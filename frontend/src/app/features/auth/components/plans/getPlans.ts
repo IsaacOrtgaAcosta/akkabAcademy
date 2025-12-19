@@ -9,7 +9,7 @@ export interface PlanResponseProps {
   id: number;
   long_description: string | null;
   name: string;
-  services: string[];
+  services?: string[];
   price_cents: number | null;
   short_description: string | null;
   stripe_price_id: string;
@@ -40,6 +40,14 @@ export function getPlans(param? : string) {
   }
   return httpClient<GetPlanResponse>(URL, {
     method: "GET",
+    auth: false,
+  });
+}
+
+export function getPlan(id: string){
+  console.log('EL ID: ', id)
+  return httpClient<GetPlanResponse>(`/api/plans/${id}`, {
+    method: 'GET',
     auth: false,
   });
 }

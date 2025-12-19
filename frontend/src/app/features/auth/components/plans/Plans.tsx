@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -15,10 +15,11 @@ import Avatar from "@mui/material/Avatar";
 import StarIcon from "@mui/icons-material/Star";
 import HorizontalLogo from "@/assets/logo/logo-horizontal.svg";
 import styles from "./Plans.module.css";
-import { RegisterForm } from "../register-form/RegisterForm";
+import { RegistrationForm } from "../registration-form/RegistrationForm";
 import type { PlanResponseProps} from "./getPlans";
 import {PLAN_COLORS} from './getPlans';
 import { priceFormatter, currentFormatter } from "@/app/shared/lib/formatters/price";
+
 
 interface PlansProps {
   plans: PlanResponseProps[];
@@ -31,6 +32,7 @@ export const Plans = ({ plans }: PlansProps) => {
   const handleOpenModal = (e: React.MouseEvent<HTMLButtonElement>) => {
     const idPlan = (e.currentTarget.closest("[data-idplan]") as HTMLElement)
       ?.dataset.idplan;
+
     setIsOpen(true);
     setIdPlan(idPlan);
   };
@@ -66,10 +68,11 @@ export const Plans = ({ plans }: PlansProps) => {
             const isRecommended = plan.code === "PRO";
             const color = PLAN_COLORS[plan.code]
             return (
+              <React.Fragment key={plan.id}>
               <Card
                 sx={{ maxWidth: 345, display: "flex", flexDirection: "column" }}
                 className={isRecommended ? `${styles.card} ${styles.cardFeatured}` : `${styles.card}`}
-                data-idPlan={plan.id}
+                data-idplan={plan.id}
               >
                 <CardHeader
                   avatar={
@@ -101,7 +104,7 @@ export const Plans = ({ plans }: PlansProps) => {
                   </Typography>
 
                   {/* Pintamos los servicios de cada plan */}
-                  {plan.services.length > 0 ? (
+                  {plan.services && plan.services.length > 0 ? (
                     <List sx={{ listStyleType: "disc", pl: 2 }}>
                       {plan.services.map((service, serviceIndex) => (
                         <ListItem
@@ -136,6 +139,7 @@ export const Plans = ({ plans }: PlansProps) => {
                   </Box>
                 </CardContent>
               </Card>
+              </React.Fragment>
             );
           })}
         </Box>
@@ -146,7 +150,7 @@ export const Plans = ({ plans }: PlansProps) => {
           escoger el ideal para tu academia.
         </Typography>
       </Box>
-      <RegisterForm
+      <RegistrationForm
         isOpen={isOpen}
         onClose={handleCloseModal}
         idPlan={idPlan}

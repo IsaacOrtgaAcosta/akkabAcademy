@@ -30,7 +30,6 @@ export const PlansPage = () => {
 
     fetchPlans();
   }, []);
-  console.log("PLANS: ", plans);
 
   if (loading) {
     return (
