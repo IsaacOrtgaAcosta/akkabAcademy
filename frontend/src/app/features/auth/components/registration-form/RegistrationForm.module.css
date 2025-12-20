@@ -1,0 +1,20 @@
+.inputWrapper{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonVisibleIcon{
+    position: absolute;
+    right: 15px;
+}
+
+.errorPassword{
+    display: none;
+    color: var(--color-danger);
+}
+
+.errorPassword.show{
+    display: flex;
+}

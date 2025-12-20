@@ -17,7 +17,7 @@ export const LoginForm = () => {
     password: "",
   });
 
-  const [errorVisible, setErrorVisible] = useState(false);
+  const [errorVisible, setErrorVisible] = useState<boolean>(false);
   const { type, visible, toggle } = usePasswordToggle();
 
   const sendPayLoadLogin = async () => {
@@ -34,7 +34,7 @@ export const LoginForm = () => {
   };
 
   return (
-    <div className={styles.form}>
+    <Box className={styles.form}>
       <img src={Logo} alt="logo" className={styles.logo} />
       {errorVisible ? (
         <AlertComponent severity="error" variant="filled" sx={{ mb: 2 }}>
@@ -46,6 +46,7 @@ export const LoginForm = () => {
       <TextField
         label={"email"}
         value={payLoadLogin.user}
+        type="text"
         onChange={(e) =>
           setPayLoadLogin((prev) => ({
             ...prev,
@@ -53,7 +54,7 @@ export const LoginForm = () => {
           }))
         }
       ></TextField>
-      <div className={styles.inputWrapper}>
+      <Box className={styles.inputWrapper}>
         <TextField
           label={"contraseña"}
           type={type}
@@ -70,7 +71,7 @@ export const LoginForm = () => {
           passwordToggle={toggle}
           className={styles.buttonVisibleIcon}
         />
-      </div>
+      </Box>
       <ButtonComponent
         color="primary"
         type="submit"
@@ -85,6 +86,6 @@ export const LoginForm = () => {
           Registrarse
         </Link>
       </Box>
-    </div>
+    </Box>
   );
 };
