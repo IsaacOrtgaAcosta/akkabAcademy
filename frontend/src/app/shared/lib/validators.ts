@@ -23,3 +23,6 @@ export function areAllFieldsFilled<T extends object>(
       !(typeof value === "string" && value.trim() === "")
   );
 }
+
+
+// Validamos si los dos campos son iguales (por ejemplo, para contraseñas)

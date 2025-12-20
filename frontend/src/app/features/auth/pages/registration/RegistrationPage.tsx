@@ -21,6 +21,9 @@ import { ErrorView } from "@/app/shared/components/ui/error/Error";
 import { RegistrationForm } from "../../components/registration-form/RegistrationForm";
 import styles from "./RegistrationPage.module.css";
 import { areAllFieldsFilled } from "@/app/shared/lib/validators";
+import { AlertComponent } from "@/app/shared/components/ui/alert/Alert";
+import { BusinessForm } from "../../components/registration-form/BusinessForm";
+import { RegistrationResume } from "../../components/registration-form/RegistrationResume";
 interface RegistrationFromProps {
   idPlan: string | undefined;
   isOpen: boolean;
@@ -34,6 +37,14 @@ interface PersonalDataProps {
   repeatPassword: string;
 }
 
+interface BusinessDataProps {
+  centerName: string;
+  typeOfCenter: string;
+  country: string;
+  city: string;
+  typeOfClient: string;
+}
+
 const steps = ["Datos personales", "Datos de academia", "Resumen"];
 
 export const RegistrationPage: React.FC<RegistrationFromProps> = ({
@@ -42,34 +53,54 @@ export const RegistrationPage: React.FC<RegistrationFromProps> = ({
   onClose,
 }) => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [alertIsVisible, setAlertIsVisible] = useState<boolean>(false);
+  const [errorVisible, setErrorVisible] = useState<boolean>(false);
   const [plan, setPlan] = useState<PlanResponseProps | null>(null);
   const [status, setStatus] = useState<number | null>(null);
   const [activeStep, setActiveStep] = useState<number>(0);
   const [skipped, setSkipped] = useState<Set<number>>(new Set<number>());
+  // Primera vista del formulario (solo datos personales). De esta manera podremos manejar errores y permitir o no que se pase a la siguiente página.
   const [personalData, setPersonalData] = useState<PersonalDataProps>({
-    name: '',
-    email: '',
-    password: '',
-    repeatPassword: ''
-  })
+    name: "",
+    email: "",
+    password: "",
+    repeatPassword: "",
+  });
+
+  // Segunda vista del formulario (datos de empresa). Podremos ir hacia atrás, pero para ir al resumen (última vista), controlamos si todos los campos están completos
+  const [businessData, setBusinessData] = useState<BusinessDataProps>({
+    centerName: "",
+    typeOfCenter: "",
+    country: "",
+    city: "",
+    typeOfClient: "",
+  });
 
   const canContinue = areAllFieldsFilled(personalData);
 
+  // Manejamos el paso de una página a otra, y decidimos si lo permitimos en caso de que todos los campos estén completos
   const handleNext = () => {
-    let newSkipped = skipped;
-    if(canContinue){
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    }else{
-      console.log('NO PUEDES CONTINUAR')
+    
+    if(!canContinue) {
+      setErrorVisible(true);
+      return;
     }
-    setSkipped(newSkipped);
+    setErrorVisible(false);
+    setActiveStep((s) => s + 1);
   };
 
+  useEffect(() => {
+    if (!errorVisible) return;
+
+    const t = window.setTimeout(() => setErrorVisible(false), 3000);
+    return () => window.clearTimeout(t);
+  }, [errorVisible, setErrorVisible]);
+
+  // Manejo de ir hacia atrás, página anterior
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  // Manejo de la carga de datos del plan escogido a partir del id. Le pasamos el id del plan al método para que la API nos devuelva la información. Cuando está todo listo, quitamos el spinner poniendo el loading en false
   useEffect(() => {
     if (!isOpen || !idPlan) return;
     const fetchPlan = async () => {
@@ -86,14 +117,16 @@ export const RegistrationPage: React.FC<RegistrationFromProps> = ({
     fetchPlan();
   }, [idPlan, isOpen]);
 
+  // Si el loading es true renderizamos el spinner
   if (loading) {
     return <Loading />;
   }
 
+  // Si la API devuelve error, pintamos el status y renderizamos la vista de Error
   if (status && status !== 200) {
     return <ErrorView status={status} />;
   }
-  
+
   return (
     <ModalComponent open={isOpen} onClose={onClose} className={styles.modal}>
       <Box>
@@ -156,7 +189,21 @@ export const RegistrationPage: React.FC<RegistrationFromProps> = ({
             <React.Fragment>
               {/* CONTENIDO DEL MODAL */}
               <DialogContent sx={{ mt: 2, mb: 1 }}>
-                {plan && <RegistrationForm plan={plan} personalData={personalData} setPersonalData={setPersonalData}/>}
+                {plan && activeStep === 0 && (
+                  <RegistrationForm
+                    plan={plan}
+                    errorVisible={errorVisible}
+                    personalData={personalData}
+                    setPersonalData={setPersonalData}
+                  />
+                )}
+                {activeStep === 1 &&
+                <BusinessForm />
+                }
+                {
+                  activeStep === 2 &&
+                  <RegistrationResume />
+                }
               </DialogContent>
               <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
                 <Button
