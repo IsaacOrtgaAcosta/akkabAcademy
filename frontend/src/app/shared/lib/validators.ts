@@ -26,3 +26,8 @@ export function areAllFieldsFilled<T extends object>(
 
 
 // Validamos si los dos campos son iguales (por ejemplo, para contraseñas)
+// export function areTheSameValue(allFields: []){
+//   allFields.forEach((key:string, index: number) => {
+    
+//   })
+// }

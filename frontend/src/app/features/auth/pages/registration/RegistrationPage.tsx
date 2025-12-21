@@ -21,7 +21,6 @@ import { ErrorView } from "@/app/shared/components/ui/error/Error";
 import { RegistrationForm } from "../../components/registration-form/RegistrationForm";
 import styles from "./RegistrationPage.module.css";
 import { areAllFieldsFilled } from "@/app/shared/lib/validators";
-import { AlertComponent } from "@/app/shared/components/ui/alert/Alert";
 import { BusinessForm } from "../../components/registration-form/BusinessForm";
 import { RegistrationResume } from "../../components/registration-form/RegistrationResume";
 interface RegistrationFromProps {
