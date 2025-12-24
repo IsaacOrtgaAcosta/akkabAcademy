@@ -8,6 +8,8 @@ import { AlertComponent } from "@/app/shared/components/ui/alert/Alert";
 
 interface PersonalData {
   name: string;
+  apellidos: string;
+  phone: string;
   email: string;
   password: string;
   repeatPassword: string;
@@ -26,23 +28,92 @@ export const RegistrationForm = ({
   personalData,
   setPersonalData,
 }: RegistrationFormProps) => {
-  const { type, visible, toggle } = usePasswordToggle();
+
+  const passwordToggle = usePasswordToggle();
+  const repeatPasswordToggle = usePasswordToggle();
 
   console.log("AQUÍ NEWPLAN: ", plan);
 
-
   return (
     <>
-        <Collapse in={errorVisible} timeout={300} unmountOnExit>
-          <Box sx={{ mb: 2}}>
-            <AlertComponent severity="error" variant="filled">
-              Rellene todos los campos para continuar
-            </AlertComponent>
-          </Box>
-        </Collapse>
+      <Collapse in={errorVisible} timeout={300} unmountOnExit>
+        <Box sx={{ mb: 2 }}>
+          <AlertComponent severity="error" variant="filled">
+            Rellene todos los campos para continuar
+          </AlertComponent>
+        </Box>
+      </Collapse>
       <Box>
         <Grid container spacing={2}>
-          <Grid size={{ xs: 12, md: 6 }}>
+          <Grid
+            size={{ xs: 12, md: 6 }}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "start",
+            }}
+          >
+            <TextField
+              fullWidth
+              label={"Email"}
+              type="email"
+              value={personalData.email}
+              onChange={(e) =>
+                setPersonalData((prev) => ({
+                  ...prev,
+                  email: e.target.value,
+                }))
+              }
+            ></TextField>
+            <Box className={styles.inputWrapper}>
+              <TextField
+                fullWidth
+                label={"Contraseña"}
+                type={passwordToggle.type}
+                value={personalData.password}
+                onChange={(e) =>
+                  setPersonalData((prev) => ({
+                    ...prev,
+                    password: e.target.value,
+                  }))
+                }
+              ></TextField>
+              <ButtonVisibleIcon
+                isVisible={passwordToggle.visible}
+                passwordToggle={passwordToggle.toggle}
+                className={styles.buttonVisibleIcon}
+              />
+            </Box>
+            <Box className={styles.inputWrapper}>
+              <TextField
+                fullWidth
+                label={"Repetir contraseña"}
+                type={repeatPasswordToggle.type}
+                value={personalData.repeatPassword}
+                onChange={(e) =>
+                  setPersonalData((prev) => ({
+                    ...prev,
+                    repeatPassword: e.target.value,
+                  }))
+                }
+              ></TextField>
+              <ButtonVisibleIcon
+                isVisible={repeatPasswordToggle.visible}
+                passwordToggle={repeatPasswordToggle.toggle}
+                className={styles.buttonVisibleIcon}
+              />
+            </Box>
+            <Box sx={{ width: "80%" }}>
+              <Typography fontSize={14} className={styles.errorPassword}>
+                Las contraseñas no coinciden
+              </Typography>
+            </Box>
+          </Grid>
+
+          <Grid
+            size={{ xs: 12, md: 6 }}
+            sx={{ display: "flex", flexDirection: "column", alignItems: "end" }}
+          >
             <TextField
               fullWidth
               label={"Nombre"}
@@ -57,64 +128,28 @@ export const RegistrationForm = ({
             ></TextField>
             <TextField
               fullWidth
-              label={"Email"}
-              type="email"
-              value={personalData.email}
+              label={"Apellidos"}
+              type="apellidos"
+              value={personalData.apellidos}
               onChange={(e) =>
                 setPersonalData((prev) => ({
                   ...prev,
-                  email: e.target.value,
+                  apellidos: e.target.value,
                 }))
               }
             ></TextField>
-          </Grid>
-          <Grid
-            size={{ xs: 12, md: 6 }}
-            sx={{ display: "flex", flexDirection: "column", alignItems: "end" }}
-          >
-            <Box className={styles.inputWrapper}>
-              <TextField
-                fullWidth
-                label={"Contraseña"}
-                type={type}
-                value={personalData.password}
-                onChange={(e) =>
-                  setPersonalData((prev) => ({
-                    ...prev,
-                    password: e.target.value,
-                  }))
-                }
-              ></TextField>
-              <ButtonVisibleIcon
-                isVisible={visible}
-                passwordToggle={toggle}
-                className={styles.buttonVisibleIcon}
-              />
-            </Box>
-            <Box className={styles.inputWrapper}>
-              <TextField
-                fullWidth
-                label={"Repetir contraseña"}
-                type={type}
-                value={personalData.repeatPassword}
-                onChange={(e) =>
-                  setPersonalData((prev) => ({
-                    ...prev,
-                    repeatPassword: e.target.value,
-                  }))
-                }
-              ></TextField>
-              <ButtonVisibleIcon
-                isVisible={visible}
-                passwordToggle={toggle}
-                className={styles.buttonVisibleIcon}
-              />
-            </Box>
-            <Box sx={{ width: "80%" }}>
-              <Typography fontSize={14} className={styles.errorPassword}>
-                Las contraseñas no coinciden
-              </Typography>
-            </Box>
+            <TextField
+              fullWidth
+              label={"Teléfono (opcional)"}
+              type="phone"
+              value={personalData.phone}
+              onChange={(e) =>
+                setPersonalData((prev) => ({
+                  ...prev,
+                  phone: e.target.value,
+                }))
+              }
+            ></TextField>
           </Grid>
         </Grid>
       </Box>

@@ -7,10 +7,10 @@ import {
   Stepper,
   Step,
   StepLabel,
-  stepClasses,
   Button,
+  Grid,
 } from "@mui/material";
-import HorizontalMonochrome from "@/assets/logo/logo-monochrome.svg";
+import MonochromeLogoNoText from "@/assets/logo/logo_noText_monochrome.svg";
 import React, { useEffect, useState, type ReactNode } from "react";
 import {
   getPlan,
@@ -31,6 +31,8 @@ interface RegistrationFromProps {
 
 interface PersonalDataProps {
   name: string;
+  apellidos: string;
+  phone: string;
   email: string;
   password: string;
   repeatPassword: string;
@@ -44,7 +46,11 @@ interface BusinessDataProps {
   typeOfClient: string;
 }
 
-const steps = ["Datos personales", "Datos de academia", "Resumen"];
+const steps = [
+  "Datos personales",
+  "Datos de la academia",
+  "Resumen y confirmación",
+];
 
 export const RegistrationPage: React.FC<RegistrationFromProps> = ({
   idPlan,
@@ -60,6 +66,8 @@ export const RegistrationPage: React.FC<RegistrationFromProps> = ({
   // Primera vista del formulario (solo datos personales). De esta manera podremos manejar errores y permitir o no que se pase a la siguiente página.
   const [personalData, setPersonalData] = useState<PersonalDataProps>({
     name: "",
+    apellidos: "",
+    phone: "",
     email: "",
     password: "",
     repeatPassword: "",
@@ -78,8 +86,7 @@ export const RegistrationPage: React.FC<RegistrationFromProps> = ({
 
   // Manejamos el paso de una página a otra, y decidimos si lo permitimos en caso de que todos los campos estén completos
   const handleNext = () => {
-    
-    if(!canContinue) {
+    if (!canContinue) {
       setErrorVisible(true);
       return;
     }
@@ -130,38 +137,54 @@ export const RegistrationPage: React.FC<RegistrationFromProps> = ({
     <ModalComponent open={isOpen} onClose={onClose} className={styles.modal}>
       <Box>
         <Box>
-          {/* HEADER */}
-          <DialogTitle
+          <Grid
             sx={{
-              px: 3,
-              pb: 3,
               borderBottom: "1px solid #E5E7EB",
+              pb: 3,
             }}
+            container
           >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: 2,
-              }}
-            >
+            <Grid size={{ xs: 12, md: 5 }}>
               {/* Logo + nombre app */}
-
               <Box
                 component="img"
-                src={HorizontalMonochrome}
+                src={MonochromeLogoNoText}
                 alt="Akkab"
                 sx={{
                   height: 28,
                   display: "block",
                 }}
               />
+            </Grid>
+            <Grid size={{ xs: 12, md: 7 }}>
+              <Typography
+                variant="subtitle2"
+                sx={{ color: "#6B7280", fontWeight: "bold", fontSize: "18px" }}
+              >
+                Crea tu cuenta
+              </Typography>
+            </Grid>
+          </Grid>
+          {/* HEADER */}
+          <DialogTitle
+            sx={{
+              px: 3,
+              pb: 0,
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 2,
+              }}
+            >
               <Typography
                 variant="subtitle2"
                 sx={{ color: "#6B7280", fontWeight: "bold" }}
               >
-                Formulario de registro - Plan {plan && plan.name}
+                Estás a un paso de empezar con el plan {plan && plan.name}
               </Typography>
             </Box>
           </DialogTitle>
@@ -196,15 +219,19 @@ export const RegistrationPage: React.FC<RegistrationFromProps> = ({
                     setPersonalData={setPersonalData}
                   />
                 )}
-                {activeStep === 1 &&
-                <BusinessForm />
-                }
-                {
-                  activeStep === 2 &&
-                  <RegistrationResume />
-                }
+                {activeStep === 1 && (
+                  <BusinessForm errorVisible={errorVisible} />
+                )}
+                {activeStep === 2 && <RegistrationResume />}
               </DialogContent>
-              <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  pt: 2,
+                  borderTop: "1px solid #E5E7EB",
+                }}
+              >
                 <Button
                   color="inherit"
                   disabled={activeStep === 0}
@@ -217,6 +244,11 @@ export const RegistrationPage: React.FC<RegistrationFromProps> = ({
                 <Button onClick={handleNext}>
                   {activeStep === steps.length - 1 ? "Finalizar" : "Siguiente"}
                 </Button>
+              </Box>
+              <Box sx={{textAlign: 'end', pr: 1}}>
+                <Typography sx={{ fontSize: "12px", color: "#6B7280" }}>
+                  Podrás revisar todos los datos antes de confirmar
+                </Typography>
               </Box>
             </React.Fragment>
           )}

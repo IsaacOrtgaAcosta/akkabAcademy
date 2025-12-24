@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" role="img" aria-label="Akkab Orbit icon (color)">
+  <!-- Orbita 3 -->
+  <circle cx="70" cy="70" r="52"
+          stroke="#F97316"
+          stroke-width="4"
+          fill="none"
+          stroke-dasharray="18 16"
+          stroke-linecap="round"
+          opacity="0.95"/>
+  <!-- Orbita 2 -->
+  <circle cx="70" cy="70" r="40"
+          stroke="#3B82F6"
+          stroke-width="5"
+          fill="none"
+          stroke-dasharray="20 14"
+          stroke-linecap="round"
+          opacity="0.95"/>
+  <!-- Orbita 1 -->
+  <circle cx="70" cy="70" r="28"
+          stroke="#10B981"
+          stroke-width="8"
+          fill="none"
+          opacity="0.98"/>
+  <!-- Núcleo -->
+  <circle cx="70" cy="70" r="8" fill="#1F2937"/>
+</svg>
