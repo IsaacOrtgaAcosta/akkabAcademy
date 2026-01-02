@@ -1,5 +1,5 @@
-import Stripe from "stripe";
-const { STRIPE_SECRET_KEY } = require("../config/env");
+const Stripe = require("stripe");
+const env = require("../config/env");
 
 const stripe = new Stripe(env.STRIPE_SECRET_KEY);
 
